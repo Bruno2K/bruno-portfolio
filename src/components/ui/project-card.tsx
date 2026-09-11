@@ -32,7 +32,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <p className="text-ink text-[14px] font-medium">{project.stack}</p>
         <div className="mt-2 flex flex-wrap gap-3">
           <Button href={project.liveUrl} variant="secondary" external>
-            Visit Live
+            Explore Project
           </Button>
           <Button href={`/projects/${project.slug}`} variant="ghost">
             Read the Story
