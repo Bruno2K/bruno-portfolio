@@ -14,116 +14,88 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "helio-analytics",
-    category: "SaaS Platform",
-    title: "Helio Analytics",
+    slug: "neon-arsenal-market",
+    category: "Backend Systems · Marketplace",
+    title: "Neon Arsenal Market",
     summary:
-      "A real-time analytics suite handling millions of events a day, rebuilt for sub-second dashboards and a calmer information hierarchy.",
-    stack: "Next.js · TypeScript · Postgres · ClickHouse",
-    liveUrl: "https://example.com",
-    year: "2024",
-    role: "Lead front-end",
+      "A backend-first marketplace built around the failure modes CRUD demos avoid: concurrent inventory, idempotent orders, payment reconciliation, financial compensation, and operational evidence.",
+    stack: "TypeScript · Node.js · Express · PostgreSQL · Prisma · Docker · k6",
+    liveUrl: "https://neon-arsenal-market.vercel.app",
+    year: "2026",
+    role: "Backend architecture & implementation",
     overview:
-      "Helio needed dashboards that stayed readable while ingesting a firehose of events. The rebuild focused on query latency, visual density, and a design system the team could actually keep consistent.",
+      "Neon Arsenal is my main backend engineering case study. The product is a marketplace for unique Counter-Strike 2 items, but the real subject is correctness: what happens when two buyers race for one listing, a payment provider succeeds while local state fails, a webhook is duplicated, or a process crashes halfway through a workflow.",
     sections: [
       {
-        heading: "The problem",
-        body: "The previous interface treated every metric as an emergency. Charts competed, filters hid in menus, and the slowest widgets set the pace for the whole page. Operators could not trust what they were looking at during incidents.",
+        heading: "Correctness under concurrency",
+        body: "Unique listings are reserved through PostgreSQL transactions and conditional state transitions so concurrent buyers cannot both acquire the same item. Order creation is customer-scoped and idempotent, with the key, canonical request hash, order, and reservation effects converging in the database.",
       },
       {
-        heading: "The approach",
-        body: "We split hot and cold paths, streamed aggregates from ClickHouse, and designed a quieter hierarchy: one primary number, supporting context, then the chart. The design system encoded spacing, type, and motion so new panels did not invent their own language.",
+        heading: "Failure-aware money flows",
+        body: "PayPal is treated as an unreliable external boundary. Capture, webhook processing, reconciliation, and compensation are designed around retries and partial failure. When money is captured but fulfillment can no longer complete, the system creates a durable refund obligation; seller financial history remains append-only through compensating entries.",
       },
       {
-        heading: "The outcome",
-        body: "Dashboards now settle in well under a second on typical queries. The same components power both the product and internal tools, and the performance budget is part of code review rather than a poster on the wall.",
+        heading: "Evidence over claims",
+        body: "The repository includes integration and concurrency tests, OpenAPI contract checks, structured logs, request IDs, optional OpenTelemetry, runbooks, and a reproducible k6 harness. In a controlled CI topology, the catalog workload held 150 RPS for 60 seconds across three equivalent repetitions with zero HTTP failures and zero dropped iterations — evidence for that test environment, not a production-capacity claim.",
       },
     ],
     accent: "blue",
   },
   {
-    slug: "drift-finance",
-    category: "Fintech App",
-    title: "Drift Finance",
+    slug: "team-scrapbook",
+    category: "Real-time Systems · Social Platform",
+    title: "Team Scrapbook",
     summary:
-      "End-to-end product design and front-end for a consumer banking experience focused on trust, speed, and clarity.",
-    stack: "React · Node.js · GraphQL · AWS",
-    liveUrl: "https://example.com",
-    year: "2022",
-    role: "Full-stack engineer",
+      "A Team Fortress 2-inspired social platform exploring real-time communication, authentication, external integrations, communities, and AI-assisted interactions.",
+    stack: "TypeScript · React · Express · Prisma · Socket.io · PostgreSQL",
+    liveUrl: "https://github.com/Bruno2K/team-scrapbook",
+    year: "2026",
+    role: "Full-stack architecture & implementation",
     overview:
-      "Drift asked for a retail banking surface that felt as considered as a well-set type specimen — numbers you can trust, flows you can finish on the first try.",
+      "Team Scrapbook is a broader systems project: a social application where HTTP APIs, real-time state, identity, media, external services, and community features have to coexist. It gives me a different engineering surface from Neon Arsenal, with more emphasis on long-lived connections and integration boundaries.",
     sections: [
       {
-        heading: "The problem",
-        body: "Legacy screens leaked uncertainty: pending states looked like errors, fees appeared late, and the checkout-like transfer flow asked for the same data twice.",
+        heading: "Real-time state",
+        body: "Socket.io powers chat, typing indicators, presence-oriented behavior, and notifications. The project explores how request/response APIs and bidirectional communication fit into the same product without turning the codebase into one undifferentiated event layer.",
       },
       {
-        heading: "The approach",
-        body: "We modelled money movement as a single GraphQL contract, designed empty and pending states as first-class screens, and kept every confirmation in plain language. The front end owned optimistic UI only where the ledger allowed it.",
+        heading: "Identity and integrations",
+        body: "The backend includes JWT-based authentication, password hashing, Steam OpenID and Steam Web API integration, plus typed validation with Zod. Those boundaries force explicit decisions about trust, synchronization, authentication state, and failure handling.",
       },
       {
-        heading: "The outcome",
-        body: "Transfer completion rose without adding steps. Support tickets about “where did my money go” dropped, and the same primitives later covered cards, payees, and statements.",
+        heading: "Product breadth without losing contracts",
+        body: "Feeds, reactions, threaded comments, communities, uploads, chat, and AI-assisted users create a wide domain surface. OpenAPI documentation, Prisma-backed data modeling, and shared TypeScript contracts keep that breadth inspectable as the project evolves.",
       },
     ],
     accent: "ink",
   },
   {
-    slug: "atlas-docs",
-    category: "Developer Tools",
-    title: "Atlas Docs",
+    slug: "pokedex-98-agent",
+    category: "AI Product · Interactive Web",
+    title: "Pokédex 98 Agent",
     summary:
-      "A documentation platform with instant search and a writing experience engineered to keep teams in flow.",
-    stack: "Next.js · Supabase · Framer Motion",
-    liveUrl: "https://example.com",
-    year: "2020",
-    role: "Front-end engineer",
+      "A Windows 98-inspired interactive Pokédex combining a desktop-like UI, typed Pokémon data, and a Gemini-powered Professor Oak assistant.",
+    stack: "Next.js 16 · React 19 · TypeScript · Gemini · PokeAPI",
+    liveUrl: "https://github.com/Bruno2K/pokedex-98-agent",
+    year: "2026",
+    role: "Product engineering & AI integration",
     overview:
-      "Atlas is a writing environment for teams who live in docs. Search had to feel instant, and the editor had to disappear once a writer was mid-sentence.",
+      "Pokédex 98 Agent is an experiment in making AI feel like part of a product rather than a chat box bolted onto a page. The application recreates a Windows 98-like desktop, exposes the original 151 Pokémon through typed data flows, and places a character-driven AI assistant inside that interaction model.",
     sections: [
       {
-        heading: "The problem",
-        body: "Authors bounced between a CMS preview and a separate published site. Search lagged a beat behind keystrokes, which was enough to break the habit of looking things up.",
+        heading: "Interface as a system",
+        body: "The desktop coordinates draggable, resizable, minimizable windows, taskbar state, context menus, sounds, and small applications. Reusable hooks isolate window movement and resizing instead of embedding interaction logic into every surface.",
       },
       {
-        heading: "The approach",
-        body: "We shipped a single Next.js surface for draft and publish, indexed headings as you typed, and kept motion limited to spatial cues — never decoration in the typing path.",
+        heading: "Typed data and rendering strategy",
+        body: "PokeAPI responses are normalized into typed application models. Next.js App Router is used with static generation for the 151 Pokémon detail routes, while cached external data and on-demand windows keep the experience responsive.",
       },
       {
-        heading: "The outcome",
-        body: "Writers stayed in one window. Search became the default navigation, and the same layout scaled from a startup handbook to a public product docs site.",
+        heading: "AI as product behavior",
+        body: "Gemini powers the Professor Oak conversation and a simulated browser through server-side API routes. Conversation history and character context are treated as application state, making the model one component of the product experience rather than the product itself.",
       },
     ],
     accent: "wash",
-  },
-  {
-    slug: "northwind-commerce",
-    category: "E-commerce",
-    title: "Northwind Commerce",
-    summary:
-      "A headless storefront delivering a 98 Lighthouse score and a checkout that converts on the first tap.",
-    stack: "React · Go · Stripe · Docker",
-    liveUrl: "https://example.com",
-    year: "2019",
-    role: "Engineer",
-    overview:
-      "Northwind needed a storefront that felt native on a phone and boringly fast on a mid-range laptop. Checkout was the product.",
-    sections: [
-      {
-        heading: "The problem",
-        body: "The previous theme shipped hundreds of kilobytes before the first product image. Mobile conversion leaked at the payment step, mostly from layout shift and a sluggish Stripe mount.",
-      },
-      {
-        heading: "The approach",
-        body: "A Go API served a thin React storefront. Images were sized per slot, checkout was a single column with early address validation, and Stripe loaded only when the user reached pay.",
-      },
-      {
-        heading: "The outcome",
-        body: "Lighthouse settled at 98 on the category template. Completed checkouts on mobile recovered without adding a promotional banner or a darker pattern.",
-      },
-    ],
-    accent: "line",
   },
 ];
 
