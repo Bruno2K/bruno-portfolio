@@ -1,50 +1,48 @@
 export const site = {
-  name: "Jack Frisman",
-  role: "Full Stack Developer",
-  email: "hello@jack.dev",
-  location: "Remote · GMT+5",
-  contactAvailability: "Remote · Available worldwide",
-  tagline: "Hi, I'm Jack. I build beautiful software that performs as well as it looks.",
-  lead: "I’m a full-stack engineer with eight years building SaaS platforms, startup products, and scalable web applications — from first commit to production at scale.",
+  name: "Bruno Ferreira",
+  role: "Senior Backend Engineer",
+  location: "Brazil · Remote",
+  contactAvailability: "Open to backend and software engineering conversations",
+  tagline:
+    "I build backend systems that stay correct when concurrency, money, failures, and production reality show up.",
+  lead:
+    "I’m a Senior Backend Engineer focused on TypeScript, Node.js, PostgreSQL, system design, and production readiness. I turn architecture decisions into verifiable code, tests, operational evidence, and explicit trade-offs.",
   description:
-    "Full-stack developer building digital products people actually enjoy using.",
+    "Senior Backend Engineer focused on reliable systems, data consistency, system design, and AI-augmented engineering.",
   footerBlurb:
-    "Full-stack developer building considered digital products for startups and teams worldwide.",
-  ogTitle: "Jack Frisman — Full Stack Developer",
-  resumeHref: "/jack-frisman-resume.pdf",
+    "Backend engineer building reliable systems with explicit trade-offs, measurable evidence, and production-minded design.",
+  ogTitle: "Bruno Ferreira — Senior Backend Engineer",
   social: {
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    x: "https://x.com",
+    github: "https://github.com/Bruno2K",
+    linkedin: "https://www.linkedin.com/in/bruno-patrick-a70a5115a/",
   },
 } as const;
 
 export const nav = [
   { label: "About", href: "/#about" },
-  { label: "Experience", href: "/#experience" },
+  { label: "Focus", href: "/#experience" },
   { label: "Projects", href: "/#projects" },
-  { label: "Blog", href: "/" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
 export const footerNav = [
   { label: "About", href: "/#about" },
-  { label: "Experience", href: "/#experience" },
+  { label: "Engineering Focus", href: "/#experience" },
   { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
 export const trustedBy = [
-  "Helio",
-  "Drift",
-  "Atlas",
-  "Northwind",
-  "Linear",
-  "Stripe",
-  "Notion",
-  "Figma",
-  "Vercel",
-  "Supabase",
-  "Framer",
+  "TypeScript",
+  "Node.js",
+  "PostgreSQL",
+  "Docker",
+  "GitHub Actions",
+  "OpenAPI",
+  "Prisma",
+  "k6",
   "AWS",
+  "Redis",
+  "Kafka",
+  "AI Engineering",
 ] as const;
