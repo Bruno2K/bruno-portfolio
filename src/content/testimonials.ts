@@ -8,23 +8,23 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "One of the rare engineers who can hold the whole product in their head — the architecture, the pixels, and the business. Everything shipped felt inevitable.",
-    name: "Mara Vance",
-    role: "VP of Product",
-    company: "Helio",
+      "Correctness is a feature. Concurrency, retries, duplicated requests, and partial failure should be modeled before production forces the lesson.",
+    name: "Correctness first",
+    role: "Concurrency · Idempotency",
+    company: "Backend",
   },
   {
     quote:
-      "He turned a tangled legacy front end into something our whole team is proud to work in. Performance and polish, without the drama.",
-    name: "Daniel Okoro",
-    role: "CTO",
-    company: "Drift",
+      "External systems fail in inconvenient ways. Reliable software needs a path back to a valid state, not just a successful happy path.",
+    name: "Design for recovery",
+    role: "Retries · Reconciliation",
+    company: "Reliability",
   },
   {
     quote:
-      "Thoughtful, fast, and genuinely kind to collaborate with. The kind of partner who makes the work better and the process calmer.",
-    name: "Sofia Lindqvist",
-    role: "Design Lead",
-    company: "Atlas",
+      "A technical claim becomes useful when someone else can inspect or reproduce it. Tests, contracts, traces, benchmarks, and ADRs turn confidence into evidence.",
+    name: "Evidence over claims",
+    role: "Tests · Observability · Load",
+    company: "Operations",
   },
 ];
