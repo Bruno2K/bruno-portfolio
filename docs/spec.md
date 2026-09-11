@@ -270,4 +270,4 @@ Milestone 1 is done when all of the following are true:
 - Pixel-perfect custom cursor artwork.
 - Exact SVG paths of trusted-by logos (intentionally replaced with generic wordmarks).
 - Whether mid-size H1 64px vs wide 62px is an optical quirk; we reproduce it.
-- Known Unknowns: GitHub destination is `https://github.com/Bruno2K/bruno-portfolio` (empty until `main` is pushed). This agent environment cannot write to GitHub without credentials.
+- Canonical GitHub repository is `https://github.com/Bruno2K/bruno-portfolio` (`main` published).

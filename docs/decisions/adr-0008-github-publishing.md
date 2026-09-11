@@ -3,23 +3,21 @@
 Status: Accepted (updated)
 
 Context:
-The brief asked to create `bruno-portfolio` on the owner’s GitHub. This Cloud Agent session is authenticated to Cursor Origin git, not GitHub. `gh` is not logged in and there is no `GH_TOKEN`. The destination now exists:
+The brief asked to create `bruno-portfolio` on the owner’s GitHub. The destination is:
 
 - https://github.com/Bruno2K/bruno-portfolio
 - public
 - default branch `main`
-- empty (no commits) as of 2026-09-11
 
-A write push from this environment (`git push github main`) fails with HTTPS username prompt disabled.
+`main` was pushed (no `--force`) on 2026-09-11. HEAD at publish: `88c13ca`.
 
 Decision:
 - Keep developing on `main` in this workspace.
-- Record the GitHub remote as `github` → `https://github.com/Bruno2K/bruno-portfolio.git`.
-- Do not force-push, do not rewrite history, do not invent credentials.
+- GitHub remote is `github` → `https://github.com/Bruno2K/bruno-portfolio.git` (no credentials in the URL).
+- Do not force-push, do not rewrite history, do not commit tokens or store PATs in the repo.
 - Do not rename the GitHub repository.
-- Land `main` on GitHub when write access is available (owner push, or GitHub auth in this environment).
+- Subsequent updates to GitHub are normal `git push github main`.
 
 Consequences:
-- GitHub currently has an empty repo at the correct name.
-- Project history is Conventional Commits on `main` and can be pushed as-is.
-- README points at `Bruno2K/bruno-portfolio`.
+- Canonical public history lives at [Bruno2K/bruno-portfolio](https://github.com/Bruno2K/bruno-portfolio).
+- This Cloud Agent’s `origin` remote remains Cursor Origin; `github` is the additional public remote.
