@@ -34,13 +34,17 @@ npm install
 npm run dev
 ```
 
+The dev server binds to `0.0.0.0:43127`.
+
 ## Commands
 
 ```bash
-npm run dev      # development server
-npm run build    # production build
-npm run lint     # ESLint
-npm run start    # serve the production build
+npm run dev           # http://127.0.0.1:43127
+npm run build         # production build
+npm run start         # serve the production build on 43127
+npm run lint          # ESLint
+npm run typecheck     # tsc --noEmit
+npm run format        # Prettier
 ```
 
 ## Project Structure

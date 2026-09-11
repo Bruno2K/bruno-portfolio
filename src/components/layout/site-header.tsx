@@ -42,26 +42,28 @@ export function SiteHeader() {
         >
           {site.name}
         </Link>
-        <nav aria-label="Primary" className="mid:flex hidden items-center gap-7">
-          {nav.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="nav-link"
-              data-active={
-                item.href !== "/" && pathname === item.href ? "true" : undefined
-              }
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="mid:block hidden">
-          <Button href="/contact">Let’s Talk</Button>
+        <div className="mid:flex hidden items-center gap-8">
+          <nav aria-label="Primary" className="flex items-center gap-7">
+            {nav.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="nav-link"
+                data-active={
+                  item.href !== "/" && pathname === item.href ? "true" : undefined
+                }
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <Button href="/contact" icon="out">
+            Let’s Talk
+          </Button>
         </div>
         <button
           type="button"
-          className="mid:hidden rounded-chip border-line bg-surface flex h-11 w-11 items-center justify-center border"
+          className="mid:hidden flex h-10 w-10 items-center justify-center"
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpen((value) => !value)}
@@ -108,7 +110,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <div onClick={() => setOpen(false)}>
-            <Button href="/contact" className="w-full">
+            <Button href="/contact" icon="out" className="w-full">
               Let’s Talk
             </Button>
           </div>

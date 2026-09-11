@@ -11,7 +11,7 @@ export function Reveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
@@ -23,14 +23,20 @@ export function Reveal({
       return;
     }
 
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.88) {
+      return;
+    }
+
+    setHidden(true);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setVisible(true);
+          setHidden(false);
           observer.disconnect();
         }
       },
-      { threshold: 0.15 },
+      { threshold: 0.12 },
     );
 
     observer.observe(node);
@@ -42,9 +48,9 @@ export function Reveal({
       ref={ref}
       className={cx(
         "transition-[opacity,transform] duration-700 ease-[var(--ease-appear)]",
-        visible
-          ? "translate-y-0 opacity-100"
-          : "translate-y-6 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100",
+        hidden
+          ? "translate-y-6 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
+          : "translate-y-0 opacity-100",
         className,
       )}
     >

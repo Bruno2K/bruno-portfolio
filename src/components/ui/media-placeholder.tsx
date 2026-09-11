@@ -41,7 +41,6 @@ export function MediaPlaceholder({
       aria-hidden="true"
     >
       <div className={cx("absolute inset-0 bg-linear-to-br", accents[accent])} />
-      <div className="absolute inset-6 rounded-[14px] border border-white/50" />
       <div className="absolute right-[12%] bottom-[16%] left-[12%]">
         {category ? <p className="text-eyebrow text-ink/60 mb-3">{category}</p> : null}
         <p className="text-h4 max-w-[16ch]">{title}</p>

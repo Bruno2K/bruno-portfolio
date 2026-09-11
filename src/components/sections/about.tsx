@@ -6,26 +6,31 @@ import { SectionHeading } from "@/components/ui/section-heading";
 export function About() {
   return (
     <section id="about" className="section-block">
-      <Container>
+      <Container className="flex flex-col gap-16">
         <Reveal>
-          <div className="mid:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] mid:gap-16 grid gap-12">
-            <div className="flex flex-col gap-6">
-              <SectionHeading index={about.index} title={about.heading} />
+          <div className="grid gap-10 mid:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] mid:gap-20">
+            <SectionHeading index={about.index} title={about.heading} />
+            <div className="flex flex-col gap-6 pt-8 max-[809px]:pt-0">
               {about.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-body max-w-[54ch]">
+                <p key={paragraph} className="text-body">
                   {paragraph}
                 </p>
               ))}
             </div>
-            <dl className="border-line bg-line grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card)] border">
-              {about.stats.map((stat) => (
-                <div key={stat.label} className="bg-canvas px-6 py-8">
-                  <dt className="text-stat">{stat.value}</dt>
-                  <dd className="text-eyebrow mt-3">{stat.label}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
+        </Reveal>
+        <Reveal>
+          <dl className="grid grid-cols-2 overflow-hidden border-y border-line mid:grid-cols-4">
+            {about.stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="border-line px-0 py-8 max-[809px]:py-6 mid:border-r mid:px-8 mid:last:border-r-0 max-[809px]:odd:pr-6 max-[809px]:even:border-l max-[809px]:even:pl-6"
+              >
+                <dt className="text-stat">{stat.value}</dt>
+                <dd className="text-eyebrow mt-3">{stat.label}</dd>
+              </div>
+            ))}
+          </dl>
         </Reveal>
       </Container>
     </section>
