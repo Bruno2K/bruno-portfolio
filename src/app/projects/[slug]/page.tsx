@@ -71,7 +71,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         ))}
         <div className="flex flex-wrap gap-3">
           <Button href={project.liveUrl} external>
-            Visit Live
+            Explore Project
           </Button>
           <Button href="/projects" variant="secondary">
             All projects
@@ -80,10 +80,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {next ? (
           <p className="text-h4 border-line border-t pt-10">
             Next:{" "}
-            <a
-              href={`/projects/${next.slug}`}
-              className="underline-offset-4 hover:underline"
-            >
+            <a href={`/projects/${next.slug}`} className="underline-offset-4 hover:underline">
               {next.title}
             </a>
           </p>
