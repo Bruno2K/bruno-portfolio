@@ -19,7 +19,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getSideProject(slug);
   if (!project) {
-    return { title: "Side project" };
+    return { title: "Repository" };
   }
   return {
     title: project.title,
@@ -40,20 +40,19 @@ export default async function SideProjectPage({ params }: SideProjectPageProps) 
         <p className="text-eyebrow">{project.tech}</p>
         <h1 className="text-display">{project.title}</h1>
         <p className="text-lead">{project.description}</p>
-        <p className="text-eyebrow tabular-nums">
-          {project.stars.toLocaleString("en-US")} stars
-        </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Button href={project.github} external>
-            GitHub
+            View GitHub
           </Button>
-          <Button href={project.demo} variant="secondary" external>
-            Live Demo
-          </Button>
+          {project.demo ? (
+            <Button href={project.demo} variant="secondary" external>
+              Live Demo
+            </Button>
+          ) : null}
         </div>
         <p className="pt-8">
           <Link href="/side-projects" className="nav-link text-[15px]">
-            Back to side projects
+            Back to repositories
           </Link>
         </p>
       </Container>
