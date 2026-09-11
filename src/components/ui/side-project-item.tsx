@@ -1,9 +1,5 @@
 import type { SideProject } from "@/content/side-projects";
 
-function formatStars(value: number): string {
-  return value.toLocaleString("en-US");
-}
-
 export function SideProjectItem({ project }: { project: SideProject }) {
   return (
     <article className="border-line flex flex-col gap-4 border-t py-8">
@@ -13,7 +9,6 @@ export function SideProjectItem({ project }: { project: SideProject }) {
             {project.title}
           </a>
         </h3>
-        <p className="text-eyebrow tabular-nums">{formatStars(project.stars)}</p>
       </div>
       <p className="text-body">{project.description}</p>
       <p className="text-ink text-[14px] font-medium">{project.tech}</p>
@@ -26,14 +21,16 @@ export function SideProjectItem({ project }: { project: SideProject }) {
         >
           GitHub
         </a>
-        <a
-          href={project.demo}
-          className="text-muted hover:text-ink"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Live Demo
-        </a>
+        {project.demo ? (
+          <a
+            href={project.demo}
+            className="text-muted hover:text-ink"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Live Demo
+          </a>
+        ) : null}
       </div>
     </article>
   );

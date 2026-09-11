@@ -10,8 +10,8 @@ export function SideProjects() {
       <Container>
         <Reveal>
           <SectionHeading
-            index="(05) On the Side"
-            title="Open-source experiments & tools."
+            index="(05) Repositories"
+            title="More code you can inspect."
           />
           <div className="mid:grid-cols-2 mt-4 grid gap-x-16">
             {sideProjects.map((project) => (

@@ -5,28 +5,28 @@ export type FaqItem = {
 
 export const faq: FaqItem[] = [
   {
-    question: "Who do you work with?",
+    question: "What kind of engineer are you?",
     answer:
-      "Startups, scale-ups, founders, and product teams who value craft over noise and want a partner who sweats the details.",
+      "Backend-first. I focus on APIs, data consistency, system design, integrations, reliability, and the production behavior behind business-critical workflows.",
   },
   {
-    question: "What technologies do you use?",
+    question: "What do you optimize for?",
     answer:
-      "Mostly React, Next.js and TypeScript on the front end, with Node.js and Go powering the back end — plus Postgres and AWS.",
+      "Correctness first, then maintainability and operability. I prefer explicit invariants, measurable evidence, and simple architectures that can evolve when real requirements justify more complexity.",
   },
   {
-    question: "How long does a project take?",
+    question: "How do you approach distributed systems?",
     answer:
-      "Anywhere from a focused two-week sprint to a multi-month build. We scope it together honestly up front, with no surprises.",
+      "Skeptically. Queues, caches, event streams, and service boundaries are tools, not seniority badges. I add them when scale, isolation, latency, ownership, or failure recovery makes the trade-off worthwhile.",
   },
   {
-    question: "Do you work remotely?",
+    question: "How do you use AI in engineering?",
     answer:
-      "Always. I’ve collaborated with teams across twelve time zones and keep communication tight, async, and documented.",
+      "As an implementation and review accelerator. Agents can write, investigate, test, and challenge ideas, but requirements, architecture, trade-offs, verification, and final acceptance remain human-owned.",
   },
   {
-    question: "Can you join an existing team?",
+    question: "Which project should I inspect first?",
     answer:
-      "Yes — I’m comfortable embedding into your codebase, rituals, and tooling from day one, and ramping up fast.",
+      "Start with Neon Arsenal for backend correctness, payments, failure recovery, observability, and performance evidence. Team Scrapbook shows real-time and integration breadth; Pokédex 98 Agent shows product-oriented AI integration.",
   },
 ];

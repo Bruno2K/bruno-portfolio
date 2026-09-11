@@ -1,67 +1,36 @@
 export type SideProject = {
   slug: string;
   title: string;
-  stars: number;
   description: string;
   tech: string;
   github: string;
-  demo: string;
+  demo?: string;
 };
 
 export const sideProjects: SideProject[] = [
   {
-    slug: "lumen",
-    title: "Lumen",
-    stars: 1240,
-    description: "A tiny theme-aware syntax highlighter for the web.",
-    tech: "TypeScript",
-    github: "https://github.com",
-    demo: "https://example.com",
+    slug: "bruno-portfolio",
+    title: "Bruno Portfolio",
+    description:
+      "This portfolio itself: a Next.js reconstruction driven by specs, ADRs, reusable content modules, and an AI-assisted implementation workflow.",
+    tech: "Next.js · TypeScript · Tailwind CSS",
+    github: "https://github.com/Bruno2K/bruno-portfolio",
   },
   {
-    slug: "pico-router",
-    title: "Pico Router",
-    stars: 2100,
-    description: "A 1kb client-side router with zero config.",
-    tech: "JavaScript",
-    github: "https://github.com",
-    demo: "https://example.com",
+    slug: "team-scrapbook-repo",
+    title: "Team Scrapbook",
+    description:
+      "A full-stack social systems playground for WebSockets, Steam integration, communities, notifications, and AI-assisted interactions.",
+    tech: "TypeScript · Socket.io · Prisma",
+    github: "https://github.com/Bruno2K/team-scrapbook",
   },
   {
-    slug: "cron-studio",
-    title: "Cron Studio",
-    stars: 1730,
-    description: "A visual editor and validator for cron expressions.",
-    tech: "Next.js",
-    github: "https://github.com",
-    demo: "https://example.com",
-  },
-  {
-    slug: "usethrottle",
-    title: "useThrottle",
-    stars: 860,
-    description: "A dependency-free React hook for throttled values.",
-    tech: "React",
-    github: "https://github.com",
-    demo: "https://example.com",
-  },
-  {
-    slug: "inkwell",
-    title: "Inkwell",
-    stars: 540,
-    description: "Markdown to beautiful PDF, from the command line.",
-    tech: "Go",
-    github: "https://github.com",
-    demo: "https://example.com",
-  },
-  {
-    slug: "palette-cli",
-    title: "Palette CLI",
-    stars: 690,
-    description: "Generate accessible color scales from a single hex.",
-    tech: "Node.js",
-    github: "https://github.com",
-    demo: "https://example.com",
+    slug: "pokedex-98-repo",
+    title: "Pokédex 98 Agent",
+    description:
+      "An interactive Windows 98-style product experiment combining typed external data, desktop-like state, and Gemini-powered character interaction.",
+    tech: "Next.js · TypeScript · Gemini",
+    github: "https://github.com/Bruno2K/pokedex-98-agent",
   },
 ];
 

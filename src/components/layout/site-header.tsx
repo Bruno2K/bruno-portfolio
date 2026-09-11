@@ -49,9 +49,7 @@ export function SiteHeader() {
                 key={item.label}
                 href={item.href}
                 className="nav-link"
-                data-active={
-                  item.href !== "/" && pathname === item.href ? "true" : undefined
-                }
+                data-active={pathname === item.href ? "true" : undefined}
               >
                 {item.label}
               </Link>

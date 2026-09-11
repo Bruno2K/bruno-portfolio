@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Jack Frisman — Full Stack Developer";
+export const alt = "Bruno Ferreira — Senior Backend Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,10 +26,10 @@ export default function OpenGraphImage() {
           color: "#777777",
         }}
       >
-        Full Stack Developer
+        Senior Backend Engineer
       </div>
       <div style={{ fontSize: 64, lineHeight: 1.05, maxWidth: 900, fontWeight: 500 }}>
-        Hi, I&apos;m Jack. I build beautiful software that performs as well as it looks.
+        Reliable systems. Explicit trade-offs. Evidence over claims.
       </div>
     </div>,
     size,

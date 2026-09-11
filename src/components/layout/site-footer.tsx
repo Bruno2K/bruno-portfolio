@@ -5,11 +5,8 @@ export function SiteFooter() {
   return (
     <footer className="border-line bg-canvas border-t pt-10 pb-[130px] max-[809px]:pt-8 max-[809px]:pb-20">
       <Container className="mid:grid-cols-4 grid gap-12">
-        <div className="mid:col-span-2 flex max-w-[280px] flex-col gap-4">
+        <div className="mid:col-span-2 flex max-w-[320px] flex-col gap-4">
           <p className="text-body">{site.footerBlurb}</p>
-          <a href={`mailto:${site.email}`} className="text-ink text-[15px] font-medium">
-            {site.email}
-          </a>
           <p className="text-eyebrow">{site.location}</p>
         </div>
         <div>
@@ -28,40 +25,20 @@ export function SiteFooter() {
           <p className="text-eyebrow mb-5">Social</p>
           <ul className="flex flex-col gap-3">
             <li>
-              <a
-                href={site.social.github}
-                className="nav-link"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={site.social.github} className="nav-link" target="_blank" rel="noreferrer">
                 GitHub
               </a>
             </li>
             <li>
-              <a
-                href={site.social.linkedin}
-                className="nav-link"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={site.social.linkedin} className="nav-link" target="_blank" rel="noreferrer">
                 LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href={site.social.x}
-                className="nav-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                X / Twitter
               </a>
             </li>
           </ul>
         </div>
       </Container>
       <Container className="mt-16">
-        <p className="text-muted-2 text-[13px]">© 2026 Jack. All rights reserved.</p>
+        <p className="text-muted-2 text-[13px]">© 2026 Bruno Ferreira. All rights reserved.</p>
       </Container>
     </footer>
   );

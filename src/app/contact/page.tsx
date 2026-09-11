@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Jack to discuss your next project.",
+  description: "Get in touch with Bruno about backend and software engineering.",
 };
 
 export default function ContactPage() {
@@ -14,14 +14,18 @@ export default function ContactPage() {
       <Container className="mid:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] grid gap-16">
         <div className="flex max-w-[520px] flex-col gap-6">
           <p className="text-eyebrow">Contact</p>
-          <h1 className="text-display">Let’s build something great together.</h1>
+          <h1 className="text-display">Let’s talk about hard engineering problems.</h1>
           <p className="text-lead">
-            Have a project in mind, a role to fill, or just want to say hello? Drop a
-            message and I’ll get back to you within a couple of days.
+            Backend architecture, reliability, system design, AI-native engineering, or a role where those things matter — the best starting points are LinkedIn and GitHub.
           </p>
-          <a href={`mailto:${site.email}`} className="text-ink text-[17px] font-medium">
-            {site.email}
-          </a>
+          <div className="flex gap-5 text-[15px] font-medium">
+            <a href={site.social.linkedin} className="nav-link" target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a href={site.social.github} className="nav-link" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
           <p className="text-eyebrow">{site.contactAvailability}</p>
         </div>
         <ContactForm />
