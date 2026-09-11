@@ -9,7 +9,7 @@ export function Faq() {
     <section className="section-block">
       <Container className="mid:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] grid gap-12">
         <Reveal>
-          <SectionHeading index="(07) FAQ" title="Frequently asked." />
+          <SectionHeading index="(07) FAQ" title="How I think about engineering." />
         </Reveal>
         <Reveal>
           <FaqList items={faq} />
