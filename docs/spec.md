@@ -270,4 +270,4 @@ Milestone 1 is done when all of the following are true:
 - Pixel-perfect custom cursor artwork.
 - Exact SVG paths of trusted-by logos (intentionally replaced with generic wordmarks).
 - Whether mid-size H1 64px vs wide 62px is an optical quirk; we reproduce it.
-- GitHub repository creation: this environment has Origin git access and no `gh` authentication. Publishing `bruno-portfolio` on GitHub is done by the user via the Create repo control. Public search on 2026-09-11 found no `bruno-portfolio` under `Bruno-Patrick`.
+- Known Unknowns: GitHub destination is `https://github.com/Bruno2K/bruno-portfolio` (empty until `main` is pushed). This agent environment cannot write to GitHub without credentials.

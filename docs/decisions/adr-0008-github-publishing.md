@@ -1,18 +1,25 @@
 # ADR-0008 — GitHub repository publishing
 
-Status: Accepted
+Status: Accepted (updated)
 
 Context:
-The brief asks to create `bruno-portfolio` on the owner’s GitHub, aborting if the name is taken. This Cloud Agent session is authenticated to Cursor Origin git (`origin.cursor.com`) as the working repository. `gh` is installed but **not logged in**. There is no `GH_TOKEN`. Public GitHub API (2026-09-11) shows user `Bruno-Patrick` and **no public** repository named `bruno-portfolio` (404). Private collision cannot be verified without GitHub auth.
+The brief asked to create `bruno-portfolio` on the owner’s GitHub. This Cloud Agent session is authenticated to Cursor Origin git, not GitHub. `gh` is not logged in and there is no `GH_TOKEN`. The destination now exists:
+
+- https://github.com/Bruno2K/bruno-portfolio
+- public
+- default branch `main`
+- empty (no commits) as of 2026-09-11
+
+A write push from this environment (`git push github main`) fails with HTTPS username prompt disabled.
 
 Decision:
-- Implement the project in this workspace on branch `main`.
-- Do not create a differently named GitHub repository.
-- Do not call `origin repo create` as a substitute for GitHub.
-- Do not invent credentials.
-- The owner publishes this workspace to GitHub as `bruno-portfolio` via the product’s Create repo control (or by adding a GitHub remote themselves).
-- If that publish fails because the name exists as a private repo, stop and report the conflict rather than renaming.
+- Keep developing on `main` in this workspace.
+- Record the GitHub remote as `github` → `https://github.com/Bruno2K/bruno-portfolio.git`.
+- Do not force-push, do not rewrite history, do not invent credentials.
+- Do not rename the GitHub repository.
+- Land `main` on GitHub when write access is available (owner push, or GitHub auth in this environment).
 
 Consequences:
-- Until the owner publishes, the GitHub URL does not exist.
-- History on `main` is conventional-commit based and ready to become that GitHub repo without rewrite or force-push.
+- GitHub currently has an empty repo at the correct name.
+- Project history is Conventional Commits on `main` and can be pushed as-is.
+- README points at `Bruno2K/bruno-portfolio`.

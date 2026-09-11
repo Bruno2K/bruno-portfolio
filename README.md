@@ -64,6 +64,13 @@ Read `AGENTS.md` before changing code. Spec first, then implementation, then lin
 
 ## Deployment
 
-Static-friendly App Router site. Deployable on Vercel or any Node host that can run `next build`. No database, no required secrets for Milestone 1.
+Canonical GitHub repository: [Bruno2K/bruno-portfolio](https://github.com/Bruno2K/bruno-portfolio).
 
-Publishing this workspace to GitHub as `bruno-portfolio` is done from the Cursor Create repo control (see ADR-0008). The preferred GitHub name is `bruno-portfolio` under account `Bruno-Patrick`; do not rename it if that name is taken.
+Static-friendly App Router site. Deployable on Vercel (`next build`) with no database and no required secrets for Milestone 1.
+
+To publish local `main` to GitHub (normal push, never `--force`):
+
+```bash
+git remote add github https://github.com/Bruno2K/bruno-portfolio.git
+git push -u github main
+```
