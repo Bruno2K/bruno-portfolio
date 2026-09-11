@@ -8,7 +8,7 @@ export function Testimonials() {
     <section className="section-block">
       <Container className="mb-10">
         <Reveal>
-          <p className="text-eyebrow">(06) Testimonials</p>
+          <p className="text-eyebrow">(06) Engineering Principles</p>
         </Reveal>
       </Container>
       <QuoteTicker items={testimonials} />
