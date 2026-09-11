@@ -18,8 +18,8 @@ export function Hero() {
             <Button href="/#projects" icon="down">
               View Projects
             </Button>
-            <Button href={site.resumeHref} variant="secondary" icon="out">
-              Download Resume
+            <Button href={site.social.github} variant="secondary" icon="out" external>
+              View GitHub
             </Button>
           </div>
         </div>
