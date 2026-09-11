@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
-import { getNextProject, getProject, projects } from "@/content/projects";
+import { getNextProject, getProject, getProjectMedia, projects } from "@/content/projects";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -33,6 +33,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const next = getNextProject(project.slug);
+  const media = getProjectMedia(project);
 
   return (
     <main id="main" className="section-block">
@@ -59,6 +60,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           accent={project.accent}
           ratio="wide"
           className="rounded-[var(--radius-card)]"
+          image={
+            media
+              ? {
+                  src: media.src,
+                  alt: media.alt,
+                  sizes: "(max-width: 809px) 100vw, 1200px",
+                  objectPosition: "object-top",
+                }
+              : undefined
+          }
         />
       </Container>
       <Container className="mt-16 flex max-w-[720px] flex-col gap-12">

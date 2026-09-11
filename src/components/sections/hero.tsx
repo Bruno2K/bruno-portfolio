@@ -30,6 +30,13 @@ export function Hero() {
             accent="wash"
             ratio="portrait"
             className="max-[809px]:aspect-square mid:aspect-square"
+            image={{
+              src: site.portrait.src,
+              alt: site.portrait.alt,
+              priority: true,
+              sizes: "(max-width: 809px) 100vw, (max-width: 1439px) 42vw, 480px",
+              objectPosition: "object-[28%_16%]",
+            }}
           />
         </div>
       </Container>

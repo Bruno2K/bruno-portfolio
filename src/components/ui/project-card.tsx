@@ -16,6 +16,16 @@ export function ProjectCard({ project }: { project: Project }) {
               title={project.title}
               category={project.category}
               accent={project.accent}
+              image={
+                project.cover
+                  ? {
+                      src: project.cover.src,
+                      alt: project.cover.alt,
+                      sizes: "(max-width: 809px) 100vw, (max-width: 1439px) 46vw, 580px",
+                      objectPosition: "object-top",
+                    }
+                  : undefined
+              }
             />
           </div>
         </div>

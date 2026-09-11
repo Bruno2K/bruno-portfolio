@@ -16,6 +16,10 @@ export const site = {
     github: "https://github.com/Bruno2K",
     linkedin: "https://www.linkedin.com/in/bruno-patrick-a70a5115a/",
   },
+  portrait: {
+    src: "/images/portfolio/bruno-ferreira-portrait.jpg",
+    alt: "Bruno Ferreira smiling on a wooden outdoor deck, wearing glasses and a white T-shirt.",
+  },
 } as const;
 
 export const nav = [

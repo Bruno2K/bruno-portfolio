@@ -1,3 +1,8 @@
+export type ProjectImage = {
+  src: string;
+  alt: string;
+};
+
 export type Project = {
   slug: string;
   category: string;
@@ -10,6 +15,8 @@ export type Project = {
   overview: string;
   sections: { heading: string; body: string }[];
   accent: "blue" | "ink" | "wash" | "line";
+  cover?: ProjectImage;
+  detail?: ProjectImage;
 };
 
 export const projects: Project[] = [
@@ -40,6 +47,14 @@ export const projects: Project[] = [
       },
     ],
     accent: "blue",
+    cover: {
+      src: "/images/portfolio/neon-arsenal-market.png",
+      alt: "Neon Arsenal market grid of unique Counter-Strike 2 listings with prices in Brazilian reais.",
+    },
+    detail: {
+      src: "/images/portfolio/neon-arsenal-checkout.png",
+      alt: "Neon Arsenal checkout with five unique CS2 items in the cart and a payment summary before PayPal capture.",
+    },
   },
   {
     slug: "team-scrapbook",
@@ -96,8 +111,16 @@ export const projects: Project[] = [
       },
     ],
     accent: "wash",
+    cover: {
+      src: "/images/portfolio/pokedex-98-agent.png",
+      alt: "Pokédex 98 Agent Windows 98-style desktop with Professor Oak chat, Pac-Man, a calendar, and a Pokémon battle window.",
+    },
   },
 ];
+
+export function getProjectMedia(project: Project): ProjectImage | undefined {
+  return project.detail ?? project.cover;
+}
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);
