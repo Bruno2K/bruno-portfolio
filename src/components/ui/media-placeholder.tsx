@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cx } from "@/lib/cx";
 
 type Accent = "blue" | "ink" | "wash" | "line";
@@ -9,12 +10,21 @@ const accents: Record<Accent, string> = {
   line: "from-[#777777]/16 via-[#fafafa] to-[#ececec]",
 };
 
+type MediaImage = {
+  src: string;
+  alt: string;
+  priority?: boolean;
+  sizes: string;
+  objectPosition?: string;
+};
+
 type MediaPlaceholderProps = {
   title: string;
   category?: string;
   accent?: Accent;
   className?: string;
   ratio?: "portrait" | "landscape" | "wide";
+  image?: MediaImage;
 };
 
 export function MediaPlaceholder({
@@ -23,6 +33,7 @@ export function MediaPlaceholder({
   accent = "wash",
   className,
   ratio = "landscape",
+  image,
 }: MediaPlaceholderProps) {
   const ratioClass =
     ratio === "portrait"
@@ -38,13 +49,26 @@ export function MediaPlaceholder({
         ratioClass,
         className,
       )}
-      aria-hidden="true"
+      aria-hidden={image ? undefined : true}
     >
-      <div className={cx("absolute inset-0 bg-linear-to-br", accents[accent])} />
-      <div className="absolute right-[12%] bottom-[16%] left-[12%]">
-        {category ? <p className="text-eyebrow text-ink/60 mb-3">{category}</p> : null}
-        <p className="text-h4 max-w-[16ch]">{title}</p>
-      </div>
+      {image ? (
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          priority={image.priority}
+          sizes={image.sizes}
+          className={cx("object-cover", image.objectPosition)}
+        />
+      ) : (
+        <>
+          <div className={cx("absolute inset-0 bg-linear-to-br", accents[accent])} />
+          <div className="absolute right-[12%] bottom-[16%] left-[12%]">
+            {category ? <p className="text-eyebrow text-ink/60 mb-3">{category}</p> : null}
+            <p className="text-h4 max-w-[16ch]">{title}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }
