@@ -19,7 +19,6 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bruno-portfolio.local"),
   title: {
     default: site.ogTitle,
     template: `%s · ${site.name}`,
