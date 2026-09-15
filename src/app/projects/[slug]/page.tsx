@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+import { NeonEngineeringDossier } from "@/components/projects/neon-engineering-dossier";
 import { getNextProject, getProject, getProjectMedia, projects } from "@/content/projects";
 
 type ProjectPageProps = {
@@ -34,6 +35,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const next = getNextProject(project.slug);
   const media = getProjectMedia(project);
+  const isNeon = project.slug === "neon-arsenal-market";
 
   return (
     <main id="main" className="section-block">
@@ -77,101 +79,129 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <Container className="mt-16 flex max-w-[720px] flex-col gap-12">
         <p className="text-body text-[18px]">{project.overview}</p>
 
-        {project.architecture ? (
-          <section className="flex flex-col gap-6 border-y border-line py-10">
-            <div className="flex flex-col gap-3">
-              <p className="text-eyebrow">Architecture</p>
-              <h2 className="text-h3">{project.architecture.heading}</h2>
-              <p className="text-body">{project.architecture.intro}</p>
-            </div>
-            <div className="grid gap-3 mid:grid-cols-2">
-              {project.architecture.nodes.map((node, index) => (
-                <article key={node.label} className="border border-line p-5">
-                  <p className="text-eyebrow">0{index + 1}</p>
-                  <h3 className="text-h4 mt-3">{node.label}</h3>
-                  <p className="text-body mt-3 text-[15px]">{node.detail}</p>
-                </article>
-              ))}
-            </div>
-            {project.architecture.note ? (
-              <p className="text-muted border-l-2 border-accent pl-4 text-[14px] leading-6">
-                {project.architecture.note}
-              </p>
-            ) : null}
-          </section>
-        ) : null}
-
-        {project.criticalFlows?.length ? (
-          <section className="flex flex-col gap-8">
-            <div className="flex flex-col gap-3">
-              <p className="text-eyebrow">Critical flows</p>
-              <h2 className="text-h3">Where correctness is won or lost.</h2>
-            </div>
-            {project.criticalFlows.map((flow) => (
-              <article key={flow.title} className="border-line border-t pt-6">
-                <h3 className="text-h4">{flow.title}</h3>
-                <ol className="mt-5 flex flex-col gap-3">
-                  {flow.steps.map((step, index) => (
-                    <li key={step} className="grid grid-cols-[36px_1fr] gap-3 text-body">
-                      <span className="text-eyebrow pt-1">0{index + 1}</span>
-                      <span>{step}</span>
-                    </li>
+        {isNeon ? (
+          <NeonEngineeringDossier project={project} />
+        ) : (
+          <>
+            {project.architecture ? (
+              <section className="flex flex-col gap-6 border-y border-line py-10">
+                <div className="flex flex-col gap-3">
+                  <p className="text-eyebrow">Architecture</p>
+                  <h2 className="text-h3">{project.architecture.heading}</h2>
+                  <p className="text-body">{project.architecture.intro}</p>
+                </div>
+                <div className="grid gap-3 mid:grid-cols-2">
+                  {project.architecture.nodes.map((node, index) => (
+                    <article key={node.label} className="border border-line p-5">
+                      <p className="text-eyebrow">0{index + 1}</p>
+                      <h3 className="text-h4 mt-3">{node.label}</h3>
+                      <p className="text-body mt-3 text-[15px]">{node.detail}</p>
+                    </article>
                   ))}
-                </ol>
-                <p className="text-ink mt-5 border-l-2 border-accent pl-4 text-[15px] font-medium leading-6">
-                  {flow.outcome}
-                </p>
-              </article>
+                </div>
+                {project.architecture.note ? (
+                  <p className="text-muted border-l-2 border-accent pl-4 text-[14px] leading-6">
+                    {project.architecture.note}
+                  </p>
+                ) : null}
+              </section>
+            ) : null}
+
+            {project.criticalFlows?.length ? (
+              <section className="flex flex-col gap-8">
+                <div className="flex flex-col gap-3">
+                  <p className="text-eyebrow">Critical flows</p>
+                  <h2 className="text-h3">Where correctness is won or lost.</h2>
+                </div>
+                {project.criticalFlows.map((flow) => (
+                  <article key={flow.title} className="border-line border-t pt-6">
+                    <h3 className="text-h4">{flow.title}</h3>
+                    <ol className="mt-5 flex flex-col gap-3">
+                      {flow.steps.map((step, index) => (
+                        <li key={step} className="grid grid-cols-[36px_1fr] gap-3 text-body">
+                          <span className="text-eyebrow pt-1">0{index + 1}</span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                    <p className="text-ink mt-5 border-l-2 border-accent pl-4 text-[15px] font-medium leading-6">
+                      {flow.outcome}
+                    </p>
+                  </article>
+                ))}
+              </section>
+            ) : null}
+
+            {project.sections.map((section) => (
+              <section key={section.heading} className="flex flex-col gap-4">
+                <h2 className="text-h3">{section.heading}</h2>
+                <p className="text-body">{section.body}</p>
+              </section>
             ))}
-          </section>
-        ) : null}
 
-        {project.sections.map((section) => (
-          <section key={section.heading} className="flex flex-col gap-4">
-            <h2 className="text-h3">{section.heading}</h2>
-            <p className="text-body">{section.body}</p>
-          </section>
-        ))}
-
-        {project.evidence?.length ? (
-          <section className="flex flex-col gap-6 border-y border-line py-10">
-            <div className="flex flex-col gap-3">
-              <p className="text-eyebrow">Engineering evidence</p>
-              <h2 className="text-h3">Inspect the claims.</h2>
-              <p className="text-body">
-                These links point to the repository artifacts behind the architecture and reliability claims above.
-              </p>
-            </div>
-            <div className="grid gap-3 mid:grid-cols-2">
-              {project.evidence.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group border border-line p-5 transition-colors hover:border-ink"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-h4">{item.label}</h3>
-                    <span className="text-muted group-hover:text-ink" aria-hidden="true">
-                      ↗
-                    </span>
-                  </div>
-                  <p className="text-body mt-3 text-[15px]">{item.description}</p>
-                </a>
-              ))}
-            </div>
-          </section>
-        ) : null}
+            {project.evidence?.length ? (
+              <section className="flex flex-col gap-6 border-y border-line py-10">
+                <div className="flex flex-col gap-3">
+                  <p className="text-eyebrow">Engineering evidence</p>
+                  <h2 className="text-h3">Inspect the claims.</h2>
+                  <p className="text-body">
+                    These links point to the repository artifacts behind the architecture and reliability claims above.
+                  </p>
+                </div>
+                <div className="grid gap-3 mid:grid-cols-2">
+                  {project.evidence.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group border border-line p-5 transition-colors hover:border-ink"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="text-h4">{item.label}</h3>
+                        <span className="text-muted group-hover:text-ink" aria-hidden="true">
+                          ↗
+                        </span>
+                      </div>
+                      <p className="text-body mt-3 text-[15px]">{item.description}</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+          </>
+        )}
 
         <div className="flex flex-wrap gap-3">
           <Button href={project.liveUrl} external>
-            Explore Project
+            {isNeon ? "View Live Product" : "Explore Project"}
           </Button>
-          <Button href="/projects" variant="secondary">
-            All projects
-          </Button>
+          {isNeon ? (
+            <>
+              <Button href="https://github.com/Bruno2K/neon-arsenal-market" variant="secondary" external>
+                Inspect Source
+              </Button>
+              <Button
+                href="https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/architecture/c4.md"
+                variant="secondary"
+                external
+              >
+                Explore Architecture
+              </Button>
+            </>
+          ) : (
+            <Button href="/projects" variant="secondary">
+              All projects
+            </Button>
+          )}
         </div>
+
+        {isNeon ? (
+          <p className="text-body border-line border-t pt-8 text-[15px]">
+            The live product shows the customer experience. The repository and architecture links show the engineering decisions, failure handling, and evidence behind it.
+          </p>
+        ) : null}
+
         {next ? (
           <p className="text-h4 border-line border-t pt-10">
             Next:{" "}
