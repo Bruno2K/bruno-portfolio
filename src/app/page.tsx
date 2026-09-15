@@ -14,9 +14,9 @@ export default function HomePage() {
       <Hero />
       <TrustedBy />
       <About />
-      <Stack />
-      <Experience />
       <SelectedWork />
+      <Experience />
+      <Stack />
       <SideProjects />
       <Testimonials />
       <Faq />
