@@ -5,16 +5,16 @@ import { SideProjectItem } from "@/components/ui/side-project-item";
 import { sideProjects } from "@/content/side-projects";
 
 export const metadata: Metadata = {
-  title: "Side projects",
-  description: "Open-source experiments and tools.",
+  title: "Engineering evidence",
+  description: "Architecture decisions, performance evidence, and implementation artifacts you can inspect.",
 };
 
 export default function SideProjectsPage() {
   return (
     <main id="main" className="section-block">
       <Container>
-        <p className="text-eyebrow">On the side</p>
-        <h1 className="text-display mt-5">Open-source experiments & tools.</h1>
+        <p className="text-eyebrow">Engineering evidence</p>
+        <h1 className="text-display mt-5">Claims backed by inspectable artifacts.</h1>
         <div className="mid:grid-cols-2 mt-8 grid gap-x-16">
           {sideProjects.map((project) => (
             <SideProjectItem key={project.slug} project={project} />
