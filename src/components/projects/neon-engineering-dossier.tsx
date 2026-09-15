@@ -19,6 +19,34 @@ const evidenceGroups = [
   },
 ] as const;
 
+const reviewerProof = [
+  {
+    label: "Reviewer guide",
+    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/portfolio/reviewer-guide.md",
+    description: "A 5–15 minute path for hiring managers and Senior/Staff/Principal reviewers.",
+  },
+  {
+    label: "Backend case study",
+    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/portfolio/case-study.md",
+    description: "The canonical problem, decisions, hardest failure modes, trade-offs, and final engineering result.",
+  },
+  {
+    label: "Evidence index",
+    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/portfolio/evidence-index.md",
+    description: "A claim-to-proof map connecting invariants and decisions to implementation, tests, and operational evidence.",
+  },
+  {
+    label: "Final Senior Backend audit",
+    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/verification/final-senior-backend-audit-2026-09-14.md",
+    description: "Adversarial review across 28 dimensions and 34 findings; all seven P0 findings were corrected and re-verified.",
+  },
+  {
+    label: "Production & operational proof",
+    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/verification/production-operational-proof-2026-09-15.md",
+    description: "Bounded evidence for topology, probes, recovery, SLO targets, game days, runbooks, and explicit unknowns.",
+  },
+] as const;
+
 const guarantees = [
   "Two concurrent buyers cannot both acquire the same unique listing.",
   "Replaying the same valid order request does not create a second order.",
@@ -51,15 +79,37 @@ const decisions = [
   },
 ] as const;
 
+const frozenLimits = [
+  {
+    title: "Confirmed-order cancellation policy",
+    detail: "The customer cancellation/refund semantics for already-confirmed orders remain an explicit product decision rather than a hidden implementation gap.",
+  },
+  {
+    title: "Deeper payment-link and capture recovery",
+    detail: "Two legitimate recovery-depth improvements remain frozen because they do not create a duplicate economic effect in the current system.",
+  },
+  {
+    title: "Standalone reservation abuse hardening",
+    detail: "Authenticated standalone reserve can still create TTL-bounded inventory griefing; closing it requires an explicit product/API decision.",
+  },
+  {
+    title: "Production evidence boundaries",
+    detail: "Production OTLP reception, managed backup/restore, sustained production SLOs, HA, and multi-region capacity are not claimed because they were not proven.",
+  },
+] as const;
+
 export function NeonEngineeringDossier({ project }: { project: Project }) {
   const evidence = project.evidence ?? [];
 
   return (
     <div className="flex flex-col gap-16">
       <section className="flex flex-col gap-6 border-y border-line py-10">
-        <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">At a glance</p>
-          <h2 className="text-h3">The case in under a minute.</h2>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-col gap-3">
+            <p className="text-eyebrow">At a glance</p>
+            <h2 className="text-h3">The case in under a minute.</h2>
+          </div>
+          <span className="border border-line px-3 py-2 text-eyebrow">Portfolio Complete · Maintenance Mode</span>
         </div>
         <dl className="grid gap-3 mid:grid-cols-2">
           <div className="border border-line p-5">
@@ -79,6 +129,9 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
             <dd className="text-h4 mt-3">Concurrency · Idempotency · Payments · Recovery · Operability</dd>
           </div>
         </dl>
+        <p className="text-body">
+          The functional roadmap is closed. The project is intentionally frozen as a portfolio case study; future architecture work requires a measured problem and a new engineering decision, not a larger technology stack.
+        </p>
       </section>
 
       <section className="flex flex-col gap-7">
@@ -270,6 +323,24 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
         </div>
       </section>
 
+      <section className="flex flex-col gap-7 border-y border-line py-10">
+        <div className="flex flex-col gap-3">
+          <p className="text-eyebrow">What was deliberately left unfinished</p>
+          <h2 className="text-h3">Known limits are frozen, not disguised.</h2>
+          <p className="text-body">
+            The final audit separates credible future improvements from portfolio theater. These limits remain visible because closing them would require a real product, operational, or scale requirement.
+          </p>
+        </div>
+        <div className="grid gap-3 mid:grid-cols-2">
+          {frozenLimits.map((item) => (
+            <article key={item.title} className="border border-line p-5">
+              <h3 className="text-h4">{item.title}</h3>
+              <p className="text-body mt-3 text-[15px]">{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {project.sections.length ? (
         <section className="flex flex-col gap-8">
           <div className="flex flex-col gap-3">
@@ -285,12 +356,36 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
         </section>
       ) : null}
 
+      <section className="flex flex-col gap-8 border-y border-line py-10">
+        <div className="flex flex-col gap-3">
+          <p className="text-eyebrow">Reviewer proof</p>
+          <h2 className="text-h3">Start with the high-signal artifacts.</h2>
+          <p className="text-body">
+            The project has a dedicated review path, a canonical case study, a claim-to-proof index, an adversarial Senior Backend audit, and a bounded operational-proof phase.
+          </p>
+        </div>
+        <div className="grid gap-3 mid:grid-cols-2">
+          {reviewerProof.map((item) => (
+            <a key={item.href} href={item.href} target="_blank" rel="noreferrer" className="group border border-line p-5 transition-colors hover:border-ink">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-h4">{item.label}</h3>
+                <span className="text-muted group-hover:text-ink" aria-hidden="true">↗</span>
+              </div>
+              <p className="text-body mt-3 text-[15px]">{item.description}</p>
+            </a>
+          ))}
+        </div>
+        <p className="text-muted border-l-2 border-accent pl-4 text-[14px] leading-6">
+          Final audit scope: 28 dimensions, 34 findings, seven P0 findings corrected and re-verified, unresolved P0 = 0. Remaining P1 limitations are documented and frozen rather than presented as completed work.
+        </p>
+      </section>
+
       {evidence.length ? (
-        <section className="flex flex-col gap-8 border-y border-line py-10">
+        <section className="flex flex-col gap-8">
           <div className="flex flex-col gap-3">
             <p className="text-eyebrow">Engineering evidence</p>
-            <h2 className="text-h3">Inspect the claims.</h2>
-            <p className="text-body">The case study stays concise; the repository holds the deeper proof.</p>
+            <h2 className="text-h3">Inspect the implementation details.</h2>
+            <p className="text-body">The reviewer path above is the fast route; these repository artifacts expose the deeper architecture, reliability, operations, and performance proof.</p>
           </div>
           {evidenceGroups.map((group) => {
             const items = evidence.filter((item) => group.labels.includes(item.label as never));
@@ -314,6 +409,12 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
           })}
         </section>
       ) : null}
+
+      <section className="border-t border-line pt-8">
+        <p className="text-h4">
+          This project is intentionally frozen. Further architecture work requires a measured problem, not a larger technology stack.
+        </p>
+      </section>
     </div>
   );
 }
