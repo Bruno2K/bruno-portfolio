@@ -8,35 +8,19 @@ export type Role = {
 
 export const experience: Role[] = [
   {
-    dates: "CORE",
-    title: "Backend Engineering",
-    company: "Correctness & APIs",
+    dates: "JUL 2019 — PRESENT",
+    title: "Development Manager",
+    company: "Ubicua",
     summary:
-      "Designing APIs and business workflows around explicit invariants, transactional boundaries, idempotency, and data consistency instead of relying on happy-path behavior.",
-    stack: "TypeScript · Node.js · PostgreSQL",
+      "Leading software projects focused on automation, customer experience, and omnichannel solutions, including WhatsApp-integrated platforms and Dialogflow conversational flows. Owns delivery from requirements analysis through execution, stakeholder alignment, prioritization, quality, and coordination across product, design, and engineering. Coordinates multiple concurrent initiatives spanning CRM, BI, mobile applications, and RPA.",
+    stack: "Leadership · SDLC · Omnichannel · CRM · BI · RPA",
   },
   {
-    dates: "SYSTEMS",
-    title: "System Design",
-    company: "Architecture & Reliability",
+    dates: "JUN 2017 — JUL 2019",
+    title: "Full Stack Developer",
+    company: "Ubicua",
     summary:
-      "Choosing boundaries and infrastructure from actual requirements, failure modes, and operational cost — not adding distributed complexity just to make a system look sophisticated.",
-    stack: "Distributed systems · Messaging · Caching · Recovery",
-  },
-  {
-    dates: "PRODUCTION",
-    title: "Operational Engineering",
-    company: "Evidence & Performance",
-    summary:
-      "Treating tests, contracts, observability, CI, load testing, and runbooks as part of the design so reliability claims can be inspected and reproduced.",
-    stack: "Docker · GitHub Actions · OpenAPI · k6",
-  },
-  {
-    dates: "AI-NATIVE",
-    title: "AI-Augmented Engineering",
-    company: "Agents & Verification",
-    summary:
-      "Using coding agents to accelerate implementation and review while keeping requirements, architecture, trade-offs, verification, and final acceptance human-owned.",
-    stack: "LLMs · Agent workflows · Specs · ADRs",
+      "Built full-stack solutions for automation and customer experience, including omnichannel service platforms integrated with the official WhatsApp API and Dialogflow. Worked across CRM, dashboards and BI, iOS/Android applications, marketplace and gamification features, REST API integrations, RPA, SMS campaigns, and evolutionary maintenance of production systems.",
+    stack: "REST APIs · WhatsApp · Dialogflow · CRM · Mobile · RPA",
   },
 ];

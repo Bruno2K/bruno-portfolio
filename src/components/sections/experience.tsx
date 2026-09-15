@@ -9,10 +9,13 @@ export function Experience() {
     <section id="experience" className="section-block">
       <Container>
         <Reveal>
-          <SectionHeading index="(03) Engineering Focus" title="What I optimize for." />
+          <SectionHeading
+            index="(03) Professional Experience"
+            title="From implementation to technical leadership."
+          />
           <div className="border-line mt-4 border-t">
             {experience.map((role) => (
-              <ExperienceItem key={role.company} role={role} />
+              <ExperienceItem key={`${role.company}-${role.title}`} role={role} />
             ))}
           </div>
         </Reveal>
