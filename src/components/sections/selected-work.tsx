@@ -10,8 +10,8 @@ export function SelectedWork() {
       <Container>
         <Reveal>
           <SectionHeading
-            index="(04) Selected Work"
-            title="A few products I’m proud to have shipped."
+            index="(02) Engineering Case Studies"
+            title="Systems, trade-offs, and evidence you can inspect."
           />
           <div className="mid:grid-cols-2 mid:gap-8 mt-12 grid gap-16">
             {projects.map((project) => (
