@@ -3,34 +3,37 @@ export type SideProject = {
   title: string;
   description: string;
   tech: string;
-  github: string;
-  demo?: string;
+  href: string;
+  linkLabel: string;
 };
 
 export const sideProjects: SideProject[] = [
   {
-    slug: "bruno-portfolio",
-    title: "Bruno Portfolio",
+    slug: "neon-architecture-decisions",
+    title: "Neon Arsenal ADRs",
     description:
-      "This portfolio itself: a Next.js reconstruction driven by specs, ADRs, reusable content modules, and an AI-assisted implementation workflow.",
-    tech: "Next.js · TypeScript · Tailwind CSS",
-    github: "https://github.com/Bruno2K/bruno-portfolio",
+      "Architecture decisions covering order idempotency, webhook reliability, OpenTelemetry, hot-path indexes, seller ledger design, transactional outbox, pagination, and other production concerns.",
+    tech: "Architecture · Reliability · Data consistency",
+    href: "https://github.com/Bruno2K/neon-arsenal-market/tree/main/docs/adr",
+    linkLabel: "Inspect ADRs",
   },
   {
-    slug: "team-scrapbook-repo",
-    title: "Team Scrapbook",
+    slug: "neon-load-testing",
+    title: "Load-test evidence",
     description:
-      "A full-stack social systems playground for WebSockets, Steam integration, communities, notifications, and AI-assisted interactions.",
-    tech: "TypeScript · Socket.io · Prisma",
-    github: "https://github.com/Bruno2K/team-scrapbook",
+      "The reproducible CI workflow behind the Neon Arsenal catalog performance claim, including the controlled test topology and repeated k6 execution.",
+    tech: "k6 · GitHub Actions · Performance",
+    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/.github/workflows/load-test-catalog-claim.yml",
+    linkLabel: "Inspect workflow",
   },
   {
-    slug: "pokedex-98-repo",
-    title: "Pokédex 98 Agent",
+    slug: "portfolio-decisions",
+    title: "Portfolio engineering decisions",
     description:
-      "An interactive Windows 98-style product experiment combining typed external data, desktop-like state, and Gemini-powered character interaction.",
-    tech: "Next.js · TypeScript · Gemini",
-    github: "https://github.com/Bruno2K/pokedex-98-agent",
+      "ADRs for this site covering the App Router, server/client boundaries, content modules, design tokens, image handling, animation strategy, and publishing workflow.",
+    tech: "Next.js · ADRs · AI-assisted delivery",
+    href: "https://github.com/Bruno2K/bruno-portfolio/tree/main/docs/decisions",
+    linkLabel: "Inspect ADRs",
   },
 ];
 
