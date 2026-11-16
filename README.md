@@ -2,7 +2,9 @@
 
 ## Overview
 
-Reconstruction of the Portfoliox Framer portfolio template as an original Next.js application. Milestone 1 matches the reference layout, type, color, and interaction using placeholder persona copy (Jack Frisman). Later work will replace that copy with Bruno’s professional content.
+Professional portfolio for Bruno, positioned primarily for international Senior Backend Engineer opportunities and secondarily for freelancing work in Brazil. The site presents evidence-based engineering cases, professional experience, and clear contact paths without overstating unverified results.
+
+The application began as an original Next.js reconstruction of the Portfoliox Framer visual system. That established layout, typography, color, interaction, responsiveness, and accessibility baseline remains in place while the content evolves around Bruno's professional identity.
 
 This is not a fork of Framer source. See `docs/spec.md`.
 
@@ -21,7 +23,7 @@ See `docs/implementation-plan.md` and `docs/decisions/`. High-level layout:
 - `src/components/layout` — header, footer, container
 - `src/components/sections` — page sections
 - `src/components/ui` — small primitives
-- `src/content` — typed placeholder copy
+- `src/content` — typed professional content
 - `src/styles` — tokens and global CSS
 - `docs/` — spec, ADRs, plan
 
@@ -66,10 +68,10 @@ Read `AGENTS.md` before changing code. Spec first, then implementation, then lin
 
 Canonical GitHub repository: [Bruno2K/bruno-portfolio](https://github.com/Bruno2K/bruno-portfolio) (`main`).
 
-Static-friendly App Router site. Deployable on Vercel (`next build`) with no database and no required secrets for Milestone 1.
+Static-friendly App Router site. Deployable on Vercel (`next build`) with no database or required secrets for the current static experience.
 
-This workspace already has remote `github`. Later updates (normal push, never `--force`):
+Canonical remote is `origin`. Publish feature branches normally and never use `--force`:
 
 ```bash
-git push github main
+git push -u origin <branch>
 ```
