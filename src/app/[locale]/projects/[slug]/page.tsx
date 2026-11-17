@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { MediaPlaceholder, type Accent } from "@/components/ui/media-placeholder";
+import { NeonCaseOverview } from "@/components/projects/neon-case-overview";
 import { NeonEngineeringDossier } from "@/components/projects/neon-engineering-dossier";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -97,7 +98,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <p className="text-body text-[18px]">{project.overview}</p>
 
         {isNeon ? (
-          <NeonEngineeringDossier project={project} copy={dictionary.neonDossier} />
+          <>
+            <NeonCaseOverview copy={dictionary.neonDossier.overview90} />
+            <NeonEngineeringDossier project={project} copy={dictionary.neonDossier} />
+          </>
         ) : (
           <>
             {project.architecture ? (

@@ -15,6 +15,7 @@ export const ptBr = {
     footerBlurb:
       "Engenheiro de Software Sênior construindo sistemas de negócio da descoberta à entrega confiável.",
     ogTitle: "Bruno Ferreira — Engenheiro de Software Sênior",
+    ogImageAlt: "Bruno Ferreira — Portfólio de Engenharia de Software",
     social: {
       github: "https://github.com/Bruno2K",
       linkedin: "https://www.linkedin.com/in/bruno-patrick-a70a5115a/",
@@ -28,7 +29,6 @@ export const ptBr = {
     { label: "Sobre", href: "/#about" },
     { label: "Foco", href: "/#experience" },
     { label: "Projetos", href: "/#projects" },
-    { label: "Contato", href: "/contact" },
   ],
   footerNav: [
     { label: "Sobre", href: "/#about" },
@@ -668,6 +668,70 @@ export const ptBr = {
     },
   },
   neonDossier: {
+    overview90: {
+      eyebrow: "Revisão rápida de engenharia",
+      title: "Neon em 90 Segundos",
+      intro:
+        "Comece pelo contexto do produto, pelo problema de backend, pelas decisões sob minha responsabilidade e pelas evidências que as sustentam. O dossier técnico completo permanece disponível abaixo.",
+      sections: [
+        {
+          label: "Contexto",
+          body: "Um marketplace de itens digitais com propriedade individual, em que cada anúncio é único e não pode ser vendido a dois compradores.",
+        },
+        {
+          label: "Desafio de engenharia",
+          body: "Manter reservas, pedidos, estado no PayPal e efeitos assíncronos consistentes diante de concorrência, retentativas, atrasos do provedor e falhas parciais.",
+        },
+        {
+          label: "Meu papel",
+          body: "Projetei e implementei a arquitetura backend deste case de portfólio, assumindo as principais decisões de consistência, integração e recuperação de falhas.",
+        },
+        {
+          label: "Resultado demonstrável",
+          body: "Testes apoiados por PostgreSQL e evidências rastreadas demonstram um vencedor na reserva concorrente, retentativas idempotentes, tratamento seguro de pagamentos duplicados e trabalho assíncrono recuperável.",
+        },
+      ],
+      decisions: {
+        eyebrow: "Decisões principais",
+        title: "Correção antes de amplitude arquitetural.",
+        items: [
+          "Manter o PostgreSQL como fonte autoritativa por meio de transações, constraints e transições condicionais de estado.",
+          "Usar identidades duráveis, claims idempotentes e reconciliação para que retentativas e falhas parciais no PayPal convirjam para o estado persistido.",
+          "Manter um monólito modular com jobs recuperáveis em processo e transactional outbox até que pressão medida justifique infraestrutura distribuída.",
+        ],
+      },
+      limits: {
+        label: "Limites conhecidos",
+        body: "O resultado de 150 RPS vem de um teste controlado de catálogo no GitHub Actions, não de capacidade de produção. Vercel, Render e PostgreSQL descrevem a topologia canônica documentada no repositório; o domínio atual da prévia não comprova sozinho que todos os serviços foram migrados. Redis, Kafka, SQS, workers separados, HA e operação multi-region não são apresentados como implantados.",
+      },
+      evidence: {
+        eyebrow: "Evidências diretas",
+        title: "Três caminhos da afirmação até a prova.",
+        intro:
+          "Estes pontos de entrada levam aos invariantes, decisões, testes e evidências limitadas de performance que sustentam o resumo.",
+        items: [
+          {
+            label: "Segurança sob concorrência",
+            href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/domain/invariants.md#inv-listing-exclusive-reserve",
+            description:
+              "O invariante de reserva exclusiva e seus testes de concorrência com PostgreSQL.",
+          },
+          {
+            label: "Confiabilidade de pagamentos",
+            href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/adr/0002-paypal-webhook-reliability.md",
+            description:
+              "O registro de decisão sobre estado confiável do PayPal, entrega duplicada e recuperação.",
+          },
+          {
+            label: "Performance e trade-offs",
+            href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/performance/load-test-report-2026-09-10-catalog.md",
+            description:
+              "A carga controlada em CI, seus limites, repetibilidade e primeiro gargalo observado.",
+          },
+        ],
+      },
+      dossierLink: "Continuar para o dossier técnico completo",
+    },
     evidenceGroups: [
       {
         title: "Arquitetura",
@@ -808,9 +872,9 @@ export const ptBr = {
     },
     architecture: {
       eyebrow: "Arquitetura",
-      title: "Sistema atual, sem infraestrutura decorativa.",
+      title: "Sistema documentado, sem infraestrutura decorativa.",
       description:
-        "O deploy atual é intencionalmente pequeno: o tráfego do navegador chega a uma SPA Vite, a SPA chama uma API Express e o PostgreSQL detém a verdade do negócio. Provedores externos permanecem fora dessa fronteira de confiança.",
+        "A topologia canônica documentada no repositório é intencionalmente pequena: uma SPA Vite na Vercel chama uma API Express no Render, e o PostgreSQL detém a verdade do negócio. Provedores externos permanecem fora dessa fronteira de confiança.",
       client: "Cliente",
       browser: "Navegador",
       staticFrontend: "Frontend estático. Não é uma fronteira de segurança.",
@@ -821,7 +885,7 @@ export const ptBr = {
       integrationsDetail:
         "Integrações não confiáveis ao redor do estado autoritativo no banco.",
       limitation:
-        "Redis, Kafka, SQS, um worker separado, ECS/Fargate, RDS e um ALB não são apresentados como arquitetura ativa porque não fazem parte do deploy canônico atual.",
+        "O domínio público da prévia não verifica de forma independente a hospedagem de todos os serviços. Redis, Kafka, SQS, um worker separado, ECS/Fargate, RDS e um ALB não são apresentados como arquitetura implantada porque o repositório não comprova que estejam ativos.",
     },
     guaranteeSection: {
       eyebrow: "O que o desenho garante",

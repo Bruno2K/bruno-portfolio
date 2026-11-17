@@ -86,3 +86,17 @@ test("sitemap covers every public static and dynamic route in both languages", a
 test("HTML language values match the semantic locales", () => {
   assert.deepEqual(htmlLanguages, { en: "en", "pt-br": "pt-BR" });
 });
+
+test("social image alt text follows the route locale", async () => {
+  const { getSocialImageAlt } = await import("../src/i18n/seo.ts");
+
+  assert.equal(
+    getSocialImageAlt("en"),
+    "Bruno Ferreira — Software Engineering Portfolio",
+  );
+  assert.equal(
+    getSocialImageAlt("pt-br"),
+    "Bruno Ferreira — Portfólio de Engenharia de Software",
+  );
+  assert.equal(getSocialImageAlt("unsupported"), getSocialImageAlt("en"));
+});

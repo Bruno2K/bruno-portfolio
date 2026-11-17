@@ -144,6 +144,70 @@ export const en = {
     },
   },
   neonDossier: {
+    overview90: {
+      eyebrow: "Quick engineering review",
+      title: "Neon in 90 Seconds",
+      intro:
+        "Start here for the product context, the backend problem, the decisions I owned, and the evidence behind them. The full technical dossier remains available below.",
+      sections: [
+        {
+          label: "Context",
+          body: "A marketplace for individually owned digital items, where each listing is unique and cannot be sold to two buyers.",
+        },
+        {
+          label: "Engineering challenge",
+          body: "Keep reservations, orders, PayPal state, and asynchronous effects consistent under concurrency, retries, provider delays, and partial failure.",
+        },
+        {
+          label: "My role",
+          body: "I designed and implemented the backend architecture for this portfolio case, owning its main consistency, integration, and failure-recovery decisions.",
+        },
+        {
+          label: "Demonstrated outcome",
+          body: "PostgreSQL-backed tests and tracked evidence demonstrate one reservation winner under concurrency, idempotent retries, duplicate-safe payment handling, and recoverable asynchronous work.",
+        },
+      ],
+      decisions: {
+        eyebrow: "Key decisions",
+        title: "Correctness before architectural breadth.",
+        items: [
+          "Keep PostgreSQL authoritative through transactions, constraints, and conditional state transitions.",
+          "Use durable identities, idempotent claims, and reconciliation so PayPal retries and partial failures converge on persisted state.",
+          "Keep a modular monolith with recoverable in-process jobs and a transactional outbox until measured pressure justifies distributed infrastructure.",
+        ],
+      },
+      limits: {
+        label: "Known limits",
+        body: "The 150 RPS result is a controlled GitHub Actions catalog test, not production capacity. Vercel, Render, and PostgreSQL describe the repository's canonical documented topology; the current preview domain alone does not prove that every service was migrated. Redis, Kafka, SQS, separate workers, HA, and multi-region operation are not presented as deployed.",
+      },
+      evidence: {
+        eyebrow: "Direct evidence",
+        title: "Three paths from claim to proof.",
+        intro:
+          "These focused entry points lead to the invariants, decisions, tests, and bounded performance evidence behind the summary.",
+        items: [
+          {
+            label: "Concurrency safety",
+            href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/domain/invariants.md#inv-listing-exclusive-reserve",
+            description:
+              "The exclusive-reservation invariant and its PostgreSQL concurrency tests.",
+          },
+          {
+            label: "Payment reliability",
+            href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/adr/0002-paypal-webhook-reliability.md",
+            description:
+              "The decision record for trusted PayPal state, duplicate delivery, and recovery.",
+          },
+          {
+            label: "Performance & trade-offs",
+            href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/performance/load-test-report-2026-09-10-catalog.md",
+            description:
+              "The controlled CI workload, limits, repeatability, and first observed bottleneck.",
+          },
+        ],
+      },
+      dossierLink: "Continue to the full technical dossier",
+    },
     evidenceGroups: [
       {
         title: "Architecture",
@@ -281,9 +345,9 @@ export const en = {
     },
     architecture: {
       eyebrow: "Architecture",
-      title: "Current system, without decorative infrastructure.",
+      title: "Documented system, without decorative infrastructure.",
       description:
-        "The current deployment is intentionally small: browser traffic reaches a Vite SPA, the SPA calls one Express API, and PostgreSQL owns business truth. External providers remain outside that trust boundary.",
+        "The repository's canonical documented topology is intentionally small: a Vite SPA on Vercel calls one Express API on Render, and PostgreSQL owns business truth. External providers remain outside that trust boundary.",
       client: "Client",
       browser: "Browser",
       staticFrontend: "Static frontend. Not a security boundary.",
@@ -294,7 +358,7 @@ export const en = {
       integrationsDetail:
         "Untrusted integrations around the authoritative database state.",
       limitation:
-        "Redis, Kafka, SQS, a separate worker service, ECS/Fargate, RDS, and an ALB are not presented as live architecture because they are not part of the current canonical deployment.",
+        "The public preview domain does not independently verify the hosting of every service. Redis, Kafka, SQS, a separate worker service, ECS/Fargate, RDS, and an ALB are not presented as deployed architecture because the repository does not prove them live.",
     },
     guaranteeSection: {
       eyebrow: "What the design guarantees",
