@@ -2,6 +2,7 @@ import { About } from "@/components/sections/about";
 import { Experience } from "@/components/sections/experience";
 import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
+import { ProfessionalSystems } from "@/components/sections/professional-systems";
 import { SelectedWork } from "@/components/sections/selected-work";
 import { SideProjects } from "@/components/sections/side-projects";
 import { Stack } from "@/components/sections/stack";
@@ -15,6 +16,7 @@ export default function HomePage() {
       <TrustedBy />
       <About />
       <SelectedWork />
+      <ProfessionalSystems />
       <Experience />
       <Stack />
       <SideProjects />
