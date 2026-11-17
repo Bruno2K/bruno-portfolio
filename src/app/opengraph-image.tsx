@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Bruno Ferreira — Senior Backend Engineer";
+export const alt = "Bruno Ferreira — Senior Software Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,7 +26,7 @@ export default function OpenGraphImage() {
           color: "#777777",
         }}
       >
-        Bruno Ferreira · Senior Backend Engineer
+        Bruno Ferreira · Senior Software Engineer
       </div>
       <div style={{ fontSize: 64, lineHeight: 1.05, maxWidth: 900, fontWeight: 500 }}>
         Reliable systems. Explicit trade-offs. Evidence over claims.

@@ -9,10 +9,10 @@ export const stackGroups = [
   },
   {
     label: "Distributed Systems",
-    items: ["Kafka", "Messaging", "Caching", "Idempotency"],
+    items: ["Messaging", "Caching", "Idempotency"],
   },
   {
     label: "Production Engineering",
-    items: ["Docker", "GitHub Actions", "OpenAPI", "k6", "AWS"],
+    items: ["Linux", "Docker", "GitHub Actions", "OpenAPI", "k6"],
   },
 ] as const;
