@@ -2,6 +2,7 @@ export const site = {
   name: "Bruno Ferreira",
   role: "Senior Backend Engineer",
   location: "Brazil · Remote",
+  contactEmail: "brunoharry2009@gmail.com",
   contactAvailability: "Open to backend and software engineering conversations",
   tagline:
     "I build backend systems that stay correct when concurrency, money, failures, and production reality show up.",
