@@ -5,13 +5,13 @@ export const site = {
   contactEmail: "brunoharry2009@gmail.com",
   contactAvailability: "Open to backend and software engineering conversations",
   tagline:
-    "I build backend systems that stay correct when concurrency, money, failures, and production reality show up.",
+    "I design backend systems that keep critical data and workflows correct when concurrency and failures hit.",
   lead:
-    "I’m a Senior Backend Engineer focused on TypeScript, Node.js, PostgreSQL, system design, and production readiness. I turn architecture decisions into verifiable code, tests, operational evidence, and explicit trade-offs.",
+    "I turn business-critical workflows into reliable APIs and integrations, with explicit decisions around data integrity, failure recovery, and operational trade-offs. The work is backed by code, tests, and documented engineering evidence.",
   description:
     "Senior Backend Engineer focused on reliable systems, data consistency, system design, and AI-augmented engineering.",
   footerBlurb:
-    "Backend engineer building reliable systems with explicit trade-offs, measurable evidence, and production-minded design.",
+    "Senior Backend Engineer building reliable APIs and integrations with explicit trade-offs and verifiable evidence.",
   ogTitle: "Bruno Ferreira — Senior Backend Engineer",
   social: {
     github: "https://github.com/Bruno2K",

@@ -12,7 +12,7 @@ export const experience: Role[] = [
     title: "Development Manager",
     company: "Ubicua",
     summary:
-      "Leading software projects focused on automation, customer experience, and omnichannel solutions, including WhatsApp-integrated platforms and Dialogflow conversational flows. Owns delivery from requirements analysis through execution, stakeholder alignment, prioritization, quality, and coordination across product, design, and engineering. Coordinates multiple concurrent initiatives spanning CRM, BI, mobile applications, and RPA.",
+      "Leads delivery of automation, customer experience, and omnichannel software, translating requirements into prioritized work across product, design, and engineering. Responsible for stakeholder alignment, quality, and coordination of concurrent initiatives spanning WhatsApp and Dialogflow integrations, CRM, BI, mobile applications, and RPA.",
     stack: "Leadership · SDLC · Omnichannel · CRM · BI · RPA",
   },
   {
@@ -20,7 +20,7 @@ export const experience: Role[] = [
     title: "Full Stack Developer",
     company: "Ubicua",
     summary:
-      "Built full-stack solutions for automation and customer experience, including omnichannel service platforms integrated with the official WhatsApp API and Dialogflow. Worked across CRM, dashboards and BI, iOS/Android applications, marketplace and gamification features, REST API integrations, RPA, SMS campaigns, and evolutionary maintenance of production systems.",
+      "Built and maintained production software for automation and customer experience, including omnichannel platforms integrated with the official WhatsApp API and Dialogflow. Delivered REST integrations, CRM and BI workflows, mobile applications, marketplace and gamification features, RPA, SMS campaigns, and evolutionary maintenance.",
     stack: "REST APIs · WhatsApp · Dialogflow · CRM · Mobile · RPA",
   },
 ];
