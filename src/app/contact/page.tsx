@@ -7,7 +7,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact Bruno Ferreira about senior backend engineering, reliable APIs, integrations, and system design.",
+    "Contact Bruno Ferreira about senior software engineering, backend architecture, reliable APIs, integrations, and system design.",
   path: "/contact",
 });
 
@@ -19,7 +19,7 @@ export default function ContactPage() {
           <p className="text-eyebrow">Contact</p>
           <h1 className="text-display">Let’s talk about hard engineering problems.</h1>
           <p className="text-lead">
-            Backend architecture, reliability, system design, AI-native engineering, or a
+            Backend architecture, reliability, system design, AI-assisted development, or a
             role where those things matter — the best starting points are email, LinkedIn,
             and GitHub.
           </p>

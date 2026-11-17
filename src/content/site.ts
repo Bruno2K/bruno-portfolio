@@ -1,18 +1,18 @@
 export const site = {
   name: "Bruno Ferreira",
-  role: "Senior Backend Engineer",
+  role: "Senior Software Engineer",
   location: "Brazil · Remote",
   contactEmail: "brunoharry2009@gmail.com",
-  contactAvailability: "Open to backend and software engineering conversations",
+  contactAvailability: "Open to senior software engineering conversations",
   tagline:
-    "I design backend systems that keep critical data and workflows correct when concurrency and failures hit.",
+    "I build software systems from business discovery to delivery, with a strong foundation in backend engineering, architecture, data, and integrations.",
   lead:
-    "I turn business-critical workflows into reliable APIs and integrations, with explicit decisions around data integrity, failure recovery, and operational trade-offs. The work is backed by code, tests, and documented engineering evidence.",
+    "From hands-on implementation to leading engineering teams, I focus on clear trade-offs, dependable workflows, and evidence-backed delivery — now strengthened by AI-assisted development.",
   description:
-    "Senior Backend Engineer focused on APIs, data integrity, system design, integrations, and reliable delivery.",
+    "Senior Software Engineer with a backend foundation, delivering business systems across architecture, data, APIs, and integrations.",
   footerBlurb:
-    "Senior Backend Engineer building reliable APIs and integrations with explicit trade-offs and verifiable evidence.",
-  ogTitle: "Bruno Ferreira — Senior Backend Engineer",
+    "Senior Software Engineer building business systems from discovery through reliable delivery.",
+  ogTitle: "Bruno Ferreira — Senior Software Engineer",
   social: {
     github: "https://github.com/Bruno2K",
     linkedin: "https://www.linkedin.com/in/bruno-patrick-a70a5115a/",
@@ -46,8 +46,8 @@ export const trustedBy = [
   "OpenAPI",
   "Prisma",
   "k6",
-  "AWS",
+  "Python",
   "Redis",
-  "Kafka",
-  "AI Engineering",
+  "Linux",
+  "AI-assisted Development",
 ] as const;

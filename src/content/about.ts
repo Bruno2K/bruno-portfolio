@@ -1,15 +1,15 @@
 export const about = {
   index: "(01) About",
   heading:
-    "Backend-first engineering for systems where correctness, recovery, and operability matter.",
+    "End-to-end software engineering grounded in business context, backend systems, and reliable delivery.",
   paragraphs: [
-    "I’m a software engineer with 8+ years of experience building business software and leading delivery, from full-stack implementation to development management. My professional background spans APIs, omnichannel platforms, CRM, automation, mobile applications, and production integrations.",
-    "I work closest to the backend failure modes that affect customers and operations: data consistency, API contracts, concurrency, authentication, payments, integrations, and recovery. I make requirements and trade-offs explicit, verify the behavior, and document engineering decisions against inspectable evidence.",
+    "I started my software engineering career in 2017, building business systems across frontend, backend, databases, and integrations. I later moved into system architecture and engineering leadership, coordinating three teams with up to 15 developers and directly managing their tech leads while remaining involved in product discovery and technical decisions.",
+    "My strongest work connects business constraints to technical design: modernizing legacy messaging workflows, building automation pipelines, evolving data models, and delivering operational software end to end. I now focus on hands-on software engineering and use AI-assisted development to accelerate implementation, while retaining responsibility for review, testing, and architectural judgment.",
   ],
   stats: [
-    { value: "8+ years", label: "Professional experience" },
-    { value: "Backend", label: "Primary axis" },
+    { value: "Since 2017", label: "Software engineering" },
+    { value: "End to end", label: "Delivery scope" },
     { value: "System Design", label: "Architecture" },
-    { value: "Evidence-led", label: "Engineering workflow" },
+    { value: "AI-assisted", label: "Development workflow" },
   ],
 } as const;
