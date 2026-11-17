@@ -11,11 +11,11 @@ export function Experience() {
         <Reveal>
           <SectionHeading
             index="(03) Professional Experience"
-            title="From implementation to technical leadership."
+            title="From full-stack engineering to leadership — and back to hands-on delivery."
           />
           <div className="border-line mt-4 border-t">
-            {experience.map((role) => (
-              <ExperienceItem key={`${role.company}-${role.title}`} role={role} />
+            {experience.map((phase) => (
+              <ExperienceItem key={`${phase.period}-${phase.title}`} phase={phase} />
             ))}
           </div>
         </Reveal>

@@ -1,26 +1,34 @@
-export type Role = {
-  dates: string;
+export type ExperiencePhase = {
+  period: string;
   title: string;
-  company: string;
+  context: string;
   summary: string;
-  stack: string;
+  focus: string;
 };
 
-export const experience: Role[] = [
+export const experience: ExperiencePhase[] = [
   {
-    dates: "JUL 2019 — PRESENT",
-    title: "Development Manager",
-    company: "Ubicua",
+    period: "2024 — PRESENT",
+    title: "Hands-on Software Engineering & Systems Maintenance",
+    context: "Private-sector Software Engineering",
     summary:
-      "Leads delivery of automation, customer experience, and omnichannel software, translating requirements into prioritized work across product, design, and engineering. Responsible for stakeholder alignment, quality, and coordination of concurrent initiatives spanning WhatsApp and Dialogflow integrations, CRM, BI, mobile applications, and RPA.",
-    stack: "Leadership · SDLC · Omnichannel · CRM · BI · RPA",
+      "Following an organizational restructuring, returned to individual technical delivery while continuing to maintain existing business systems and build independent projects. Current work emphasizes end-to-end implementation, backend reliability, integrations, and disciplined AI-assisted development with review and testing retained as engineering responsibilities.",
+    focus: "Implementation · Maintenance · Reliability · AI-assisted",
   },
   {
-    dates: "JUN 2017 — JUL 2019",
-    title: "Full Stack Developer",
-    company: "Ubicua",
+    period: "2019 — 2024",
+    title: "Engineering Leadership & Architecture",
+    context: "Private-sector Software Engineering",
     summary:
-      "Built and maintained production software for automation and customer experience, including omnichannel platforms integrated with the official WhatsApp API and Dialogflow. Delivered REST integrations, CRM and BI workflows, mobile applications, marketplace and gamification features, RPA, SMS campaigns, and evolutionary maintenance.",
-    stack: "REST APIs · WhatsApp · Dialogflow · CRM · Mobile · RPA",
+      "Progressed into system architecture and development leadership, coordinating three teams with up to 15 developers while directly managing their tech leads. Worked with stakeholders from discovery through delivery and contributed to hiring, mentoring, planning, estimates, and scope negotiation, while remaining hands-on on selected systems and integrations.",
+    focus: "Architecture · Discovery · Team Leadership · Delivery",
+  },
+  {
+    period: "2017 — 2019",
+    title: "Full-stack Engineering",
+    context: "Private-sector Software Engineering",
+    summary:
+      "Started working professionally in software engineering across frontend, backend, databases, APIs, and integrations. Grew from implementation work into broader responsibility for data models, legacy modernization, automation workflows, and the maintenance of business-critical software.",
+    focus: "Frontend · Backend · Databases · APIs · Integrations",
   },
 ];
