@@ -9,7 +9,7 @@ export const site = {
   lead:
     "I turn business-critical workflows into reliable APIs and integrations, with explicit decisions around data integrity, failure recovery, and operational trade-offs. The work is backed by code, tests, and documented engineering evidence.",
   description:
-    "Senior Backend Engineer focused on reliable systems, data consistency, system design, and AI-augmented engineering.",
+    "Senior Backend Engineer focused on APIs, data integrity, system design, integrations, and reliable delivery.",
   footerBlurb:
     "Senior Backend Engineer building reliable APIs and integrations with explicit trade-offs and verifiable evidence.",
   ogTitle: "Bruno Ferreira — Senior Backend Engineer",
