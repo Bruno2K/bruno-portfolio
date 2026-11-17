@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { ProjectCard } from "@/components/ui/project-card";
-import { projects } from "@/content/projects";
+import { featuredProjects } from "@/content/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -18,7 +18,7 @@ export default function ProjectsPage() {
           Selected projects & case studies.
         </h1>
         <div className="mid:grid-cols-2 mid:gap-8 mt-16 grid gap-16">
-          {projects.map((project) => (
+          {featuredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>

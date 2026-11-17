@@ -1,4 +1,4 @@
-import { projects } from "@/content/projects";
+import { featuredProjects } from "@/content/projects";
 import { Container } from "@/components/layout/container";
 import { ProjectCard } from "@/components/ui/project-card";
 import { Reveal } from "@/components/ui/reveal";
@@ -14,7 +14,7 @@ export function SelectedWork() {
             title="Systems, trade-offs, and evidence you can inspect."
           />
           <div className="mid:grid-cols-2 mid:gap-8 mt-12 grid gap-16">
-            {projects.map((project) => (
+            {featuredProjects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
