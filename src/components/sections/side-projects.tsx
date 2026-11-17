@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { sideProjects } from "@/content/side-projects";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
@@ -18,6 +19,9 @@ export function SideProjects() {
               <SideProjectItem key={project.slug} project={project} />
             ))}
           </div>
+          <Link href="/side-projects" className="nav-link mt-8 inline-flex">
+            View all side projects
+          </Link>
         </Reveal>
       </Container>
     </section>

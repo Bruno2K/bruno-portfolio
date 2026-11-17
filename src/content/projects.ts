@@ -45,7 +45,7 @@ export const projects: Project[] = [
     summary:
       "A unique-item marketplace designed to prevent overselling and state drift through transactional reservations, idempotent orders, payment reconciliation, and documented failure-mode evidence.",
     stack: "TypeScript · Node.js · Express · PostgreSQL · Prisma · Docker · k6",
-    liveUrl: "https://neon-arsenal-market.vercel.app",
+    liveUrl: "https://neon.brunoalgumacoisa.com/",
     year: "2026",
     role: "Backend architecture & implementation",
     overview:
@@ -210,7 +210,7 @@ export const projects: Project[] = [
     summary:
       "A community social platform combining HTTP APIs with authenticated real-time messaging, validated event contracts, PostgreSQL persistence, and an inspectable verification baseline.",
     stack: "TypeScript · React · Express · Prisma · Socket.io · PostgreSQL",
-    liveUrl: "https://github.com/Bruno2K/team-scrapbook",
+    liveUrl: "https://scrapbook.brunoalgumacoisa.com/",
     year: "2026",
     role: "Full-stack architecture & implementation",
     overview:
