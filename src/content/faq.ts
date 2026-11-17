@@ -7,7 +7,7 @@ export const faq: FaqItem[] = [
   {
     question: "What kind of engineer are you?",
     answer:
-      "Backend-first. I focus on APIs, data consistency, system design, integrations, reliability, and the production behavior behind business-critical workflows.",
+      "A senior software engineer with a backend foundation. I work across business discovery, architecture, APIs, data, integrations, and delivery, with particular depth in correctness and reliability.",
   },
   {
     question: "What do you optimize for?",

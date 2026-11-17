@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Engineering evidence",
   description:
-    "Architecture decisions, performance evidence, and implementation artifacts from Bruno Ferreira's backend engineering work.",
+    "Architecture decisions, performance evidence, and implementation artifacts from Bruno Ferreira's software engineering work.",
   path: "/side-projects",
 });
 
