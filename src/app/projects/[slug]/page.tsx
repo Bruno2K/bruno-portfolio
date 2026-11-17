@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { NeonEngineeringDossier } from "@/components/projects/neon-engineering-dossier";
 import { getNextProject, getProject, getProjectMedia, projects } from "@/content/projects";
+import { createPageMetadata } from "@/lib/metadata";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -20,10 +21,11 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   if (!project) {
     return { title: "Project" };
   }
-  return {
+  return createPageMetadata({
     title: project.title,
     description: project.summary,
-  };
+    path: `/projects/${project.slug}`,
+  });
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {

@@ -26,7 +26,7 @@ export default function OpenGraphImage() {
           color: "#777777",
         }}
       >
-        Senior Backend Engineer
+        Bruno Ferreira · Senior Backend Engineer
       </div>
       <div style={{ fontSize: 64, lineHeight: 1.05, maxWidth: 900, fontWeight: 500 }}>
         Reliable systems. Explicit trade-offs. Evidence over claims.

@@ -3,11 +3,14 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { SideProjectItem } from "@/components/ui/side-project-item";
 import { sideProjects } from "@/content/side-projects";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Engineering evidence",
-  description: "Architecture decisions, performance evidence, and implementation artifacts you can inspect.",
-};
+  description:
+    "Architecture decisions, performance evidence, and implementation artifacts from Bruno Ferreira's backend engineering work.",
+  path: "/side-projects",
+});
 
 export default function SideProjectsPage() {
   return (

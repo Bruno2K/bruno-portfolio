@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SkipLink } from "@/components/layout/skip-link";
 import { site } from "@/content/site";
+import { createPageMetadata, siteUrl } from "@/lib/metadata";
 import "./globals.css";
 
 const geist = Geist({
@@ -19,20 +20,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: site.ogTitle,
+    description: site.description,
+    path: "/",
+  }),
+  metadataBase: siteUrl,
   title: {
     default: site.ogTitle,
     template: `%s · ${site.name}`,
-  },
-  description: site.description,
-  openGraph: {
-    title: site.ogTitle,
-    description: site.description,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: site.ogTitle,
-    description: site.description,
   },
 };
 

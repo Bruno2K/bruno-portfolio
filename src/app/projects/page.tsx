@@ -3,11 +3,14 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { ProjectCard } from "@/components/ui/project-card";
 import { featuredProjects } from "@/content/projects";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Projects",
-  description: "Selected projects and case studies by Jack Frisman.",
-};
+  description:
+    "Backend engineering case studies by Bruno Ferreira, with architecture decisions, reliability trade-offs, and inspectable evidence.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

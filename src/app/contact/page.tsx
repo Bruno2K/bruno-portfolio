@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/ui/contact-form";
 import { Container } from "@/components/layout/container";
 import { site } from "@/content/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact",
-  description: "Get in touch with Bruno about backend and software engineering.",
-};
+  description:
+    "Contact Bruno Ferreira about senior backend engineering, reliable APIs, integrations, and system design.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

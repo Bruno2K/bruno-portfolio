@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { getSideProject, sideProjects } from "@/content/side-projects";
+import { createPageMetadata } from "@/lib/metadata";
 
 type SideProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -21,10 +22,11 @@ export async function generateMetadata({
   if (!project) {
     return { title: "Engineering evidence" };
   }
-  return {
+  return createPageMetadata({
     title: project.title,
     description: project.description,
-  };
+    path: `/side-projects/${project.slug}`,
+  });
 }
 
 export default async function SideProjectPage({ params }: SideProjectPageProps) {
