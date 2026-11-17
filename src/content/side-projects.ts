@@ -9,6 +9,15 @@ export type SideProject = {
 
 export const sideProjects: SideProject[] = [
   {
+    slug: "pokedex-98-agent",
+    title: "Pokédex 98 Agent",
+    description:
+      "A Windows 98-inspired product experiment combining typed Pokémon data, interactive desktop behavior, and a character-driven Gemini assistant.",
+    tech: "Product experiment · Next.js · AI integration",
+    href: "/projects/pokedex-98-agent",
+    linkLabel: "View experiment",
+  },
+  {
     slug: "neon-architecture-decisions",
     title: "Neon Arsenal ADRs",
     description:

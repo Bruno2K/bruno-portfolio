@@ -43,7 +43,7 @@ export const projects: Project[] = [
     category: "Backend Systems · Marketplace",
     title: "Neon Arsenal Market",
     summary:
-      "A backend-first marketplace built around the failure modes CRUD demos avoid: concurrent inventory, idempotent orders, payment reconciliation, financial compensation, and operational evidence.",
+      "A unique-item marketplace designed to prevent overselling and state drift through transactional reservations, idempotent orders, payment reconciliation, and documented failure-mode evidence.",
     stack: "TypeScript · Node.js · Express · PostgreSQL · Prisma · Docker · k6",
     liveUrl: "https://neon-arsenal-market.vercel.app",
     year: "2026",
@@ -208,25 +208,104 @@ export const projects: Project[] = [
     category: "Real-time Systems · Social Platform",
     title: "Team Scrapbook",
     summary:
-      "A Team Fortress 2-inspired social platform exploring real-time communication, authentication, external integrations, communities, and AI-assisted interactions.",
+      "A community social platform combining HTTP APIs with authenticated real-time messaging, validated event contracts, PostgreSQL persistence, and an inspectable verification baseline.",
     stack: "TypeScript · React · Express · Prisma · Socket.io · PostgreSQL",
     liveUrl: "https://github.com/Bruno2K/team-scrapbook",
     year: "2026",
     role: "Full-stack architecture & implementation",
     overview:
-      "Team Scrapbook is a broader systems project: a social application where HTTP APIs, real-time state, identity, media, external services, and community features have to coexist. It gives me a different engineering surface from Neon Arsenal, with more emphasis on long-lived connections and integration boundaries.",
+      "Team Scrapbook models a social product where identity, communities, conversations, and external integrations share one backend. The engineering problem is keeping authorization and persisted state coherent while HTTP requests and long-lived Socket.io connections serve the same users. The repository remains a development project, so this case focuses on inspectable boundaries and documented verification rather than production-scale claims.",
+    architecture: {
+      heading: "HTTP and real-time boundaries",
+      intro:
+        "A React client uses an Express API for request/response workflows and Socket.io for live messaging. Both paths converge on backend identity and messaging modules, with Prisma and PostgreSQL holding users, conversations, messages, notifications, and community state.",
+      nodes: [
+        {
+          label: "React client",
+          detail:
+            "Uses HTTP APIs for product workflows and a Socket.io client for messages, typing signals, and connection-driven updates.",
+        },
+        {
+          label: "Express API",
+          detail:
+            "Owns REST endpoints, authentication, validation, integrations, and the request/response side of the product.",
+        },
+        {
+          label: "Socket.io gateway",
+          detail:
+            "Authenticates the handshake, authorizes conversation access, validates events, applies message rate limits, persists messages, and emits to user-scoped rooms.",
+        },
+        {
+          label: "Prisma · PostgreSQL",
+          detail:
+            "Persists identity, refresh sessions, social relationships, conversations, messages, notifications, feeds, and community membership.",
+        },
+      ],
+      note:
+        "The checked-in verification baseline records passing production builds and database integration suites, while also documenting remaining root lint errors and four failing backend unit tests at the audited commit. Those limits are not presented as completed quality gates.",
+    },
+    criticalFlows: [
+      {
+        title: "Authenticated real-time message delivery",
+        steps: [
+          "The Socket.io handshake resolves an access token and rejects unauthenticated or AI-managed actors.",
+          "The connection joins a user-scoped room instead of trusting a client-provided recipient channel.",
+          "Each message is rate-limited, validated against a schema, and checked against conversation membership.",
+          "The backend persists the message before emitting its serialized representation to participants.",
+        ],
+        outcome:
+          "Authentication, authorization, validation, persistence, and delivery remain explicit stages rather than one trusted client event.",
+      },
+      {
+        title: "Authorized transient signals",
+        steps: [
+          "A typing event must include a conversation identifier.",
+          "The backend verifies that the actor may send or signal in that conversation.",
+          "Only the other participant's user-scoped room receives the typing signal.",
+          "Disconnects update presence state and emit an observability event without blocking socket cleanup.",
+        ],
+        outcome:
+          "Even non-persisted real-time signals cross an authorization boundary, while disconnect handling remains failure-tolerant.",
+      },
+    ],
     sections: [
       {
-        heading: "Real-time state",
-        body: "Socket.io powers chat, typing indicators, presence-oriented behavior, and notifications. The project explores how request/response APIs and bidirectional communication fit into the same product without turning the codebase into one undifferentiated event layer.",
+        heading: "Business problem and product boundary",
+        body: "The product brings profiles, feeds, communities, friendships, scraps, and conversations into one social system. HTTP endpoints handle durable workflows, while Socket.io is reserved for communication that benefits from a live connection rather than replacing the application API with an undifferentiated event layer.",
       },
       {
-        heading: "Identity and integrations",
-        body: "The backend includes JWT-based authentication, password hashing, Steam OpenID and Steam Web API integration, plus typed validation with Zod. Those boundaries force explicit decisions about trust, synchronization, authentication state, and failure handling.",
+        heading: "Identity, validation, and persistence",
+        body: "The backend resolves access tokens before accepting a socket, validates message payloads, checks conversation participation, and persists messages through the same backend services used by the product. Prisma models the relational boundaries for users, refresh sessions, conversations, notifications, feeds, and communities in PostgreSQL.",
       },
       {
-        heading: "Product breadth without losing contracts",
-        body: "Feeds, reactions, threaded comments, communities, uploads, chat, and AI-assisted users create a wide domain surface. OpenAPI documentation, Prisma-backed data modeling, and shared TypeScript contracts keep that breadth inspectable as the project evolves.",
+        heading: "Verification with explicit limits",
+        body: "The repository defines locked frontend and backend verification sequences, unit tests, disposable-PostgreSQL integration tests, migration checks, and production builds. Its recorded baseline also names unresolved lint and unit-test failures, so the case distinguishes implemented behavior from a fully green quality gate.",
+      },
+    ],
+    evidence: [
+      {
+        label: "Socket.io gateway",
+        href: "https://github.com/Bruno2K/team-scrapbook/blob/main/backend/src/socket.ts",
+        description:
+          "Handshake authentication, user rooms, rate limits, schema validation, conversation authorization, persistence, delivery, typing, and disconnect handling.",
+      },
+      {
+        label: "PostgreSQL domain model",
+        href: "https://github.com/Bruno2K/team-scrapbook/blob/main/backend/prisma/schema.prisma",
+        description:
+          "Prisma models for identity, sessions, feeds, social relationships, communities, conversations, messages, and notifications.",
+      },
+      {
+        label: "Verification baseline",
+        href: "https://github.com/Bruno2K/team-scrapbook/blob/main/docs/operations/repository-baseline.md",
+        description:
+          "Reproducible commands and recorded pass, failure, and environment boundaries for builds, migrations, unit tests, and integration tests.",
+      },
+      {
+        label: "API and runtime documentation",
+        href: "https://github.com/Bruno2K/team-scrapbook/blob/main/README.md",
+        description:
+          "Documented product scope, HTTP endpoints, real-time channel, integrations, local setup, and test commands, including known placeholder metadata.",
       },
     ],
     accent: "ink",
@@ -265,6 +344,11 @@ export const projects: Project[] = [
   },
 ];
 
+export const featuredProjects = projects.filter(
+  (project) =>
+    project.slug === "neon-arsenal-market" || project.slug === "team-scrapbook",
+);
+
 export function getProjectMedia(project: Project): ProjectImage | undefined {
   return project.detail ?? project.cover;
 }
@@ -274,9 +358,9 @@ export function getProject(slug: string): Project | undefined {
 }
 
 export function getNextProject(slug: string): Project | undefined {
-  const index = projects.findIndex((project) => project.slug === slug);
+  const index = featuredProjects.findIndex((project) => project.slug === slug);
   if (index === -1) {
     return undefined;
   }
-  return projects[(index + 1) % projects.length];
+  return featuredProjects[(index + 1) % featuredProjects.length];
 }
