@@ -1,0 +1,14 @@
+import type { MetadataRoute } from "next";
+import { getCanonicalUrl } from "@/lib/metadata";
+
+export default function robots(): MetadataRoute.Robots {
+  const sitemap = getCanonicalUrl("/sitemap.xml");
+
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap,
+  };
+}
