@@ -1,6 +1,14 @@
 # Implementation plan
 
-Work is sequential. Each task ends with lint/typecheck of the touched surface, a diff review, and a Conventional Commit. Do not start a task whose dependencies are open.
+The original reconstruction tasks below document the technical and visual baseline already established by the project. Current portfolio work evolves that baseline through small, independently reviewable tasks. Each task ends with validation appropriate to the touched surface, a diff review, and a Conventional Commit. Do not start a task whose dependencies are open.
+
+## P0-00 — Align repository mission and instructions
+
+- **Objective:** Make the repository documentation reflect Bruno's current portfolio: international Senior Backend Engineer hiring first, Brazilian freelancing second.
+- **Files:** `AGENTS.md`, `README.md`, this plan, and `docs/spec.md` where obsolete persona requirements conflict with the mission.
+- **Constraints:** Remove instructions that preserve a template persona. Preserve the existing technical rules, design system, responsive behavior, accessibility requirements, and engineering conventions.
+- **Accept:** Repository instructions consistently use Bruno's professional identity, evidence-based claims, English as the primary hiring experience, and a distinct secondary path for Portuguese-language freelancing.
+- **Validate:** Review the documentation diff and search the scoped files for obsolete persona requirements. A full application build is not required for documentation-only changes.
 
 ## TASK-001 — Bootstrap the application
 

@@ -1,10 +1,10 @@
-# Portfolio Reconstruction Spec
+# Professional Portfolio Spec
 
 ## Objective
 
-Rebuild the Portfoliox Framer template as an original Next.js application that matches the reference’s information architecture, layout, typography, color, interaction, and motion — without copying Framer source, embedding PP Neue Montreal, or hotlinking template images.
+Present Bruno as a Senior Backend Engineer through clear, verifiable professional evidence. The primary audience is international recruiters and hiring managers; Brazilian companies seeking freelance backend, integration, automation, or legacy-system work are a secondary audience with a distinct Portuguese-language journey.
 
-Milestone 1 is a visually close reconstruction using the template’s placeholder persona (Jack Frisman). Personalization for Bruno is out of scope.
+The existing application is an original reconstruction of the Portfoliox Framer template. Preserve its information architecture, layout, typography, color, interaction, motion, responsiveness, and accessibility as the visual baseline — without copying Framer source, embedding PP Neue Montreal, or hotlinking template images. Content must use Bruno's professional identity and must not invent experience, impact, metrics, or availability.
 
 ## Reference
 
@@ -45,7 +45,7 @@ Unknown slugs render the 404 page.
 
 Rendered in this order:
 
-1. **Hero** — occupies approximately the first viewport on desktop (`min-height: 100vh`). Left column: eyebrow “Full Stack Developer”, H1, lead paragraph, primary CTA “View Projects” (`/#projects`), secondary CTA “Download Resume”. Optional right-column media placeholder on desktop; stacks under copy on phone.
+1. **Hero** — occupies approximately the first viewport on desktop (`min-height: 100vh`). Left column: eyebrow “Senior Backend Engineer”, H1, lead paragraph, primary CTA “View Projects” (`/#projects`), and a secondary professional CTA backed by a real destination. Optional right-column media placeholder on desktop; stacks under copy on phone.
 2. **Trusted by** — label “Trusted by teams building at” + infinite logo ticker.
 3. **About (`#about`)** — `(01) About`, H2, two body paragraphs, four stats.
 4. **Stack** — `(02) Stack`, H3 “The tools I reach for, day to day.”, chip row.
@@ -73,7 +73,7 @@ Minimum structure (same for every slug):
 - Visit Live + back-to-work links
 - Next project link
 
-Copy may be authored as original placeholder equivalent to the index card, because the live CMS body is not statically extractable.
+Copy must be original and evidence-based. When a claim cannot be verified, omit it or label the limitation accurately rather than substituting template content.
 
 ### Side-project index and detail
 
@@ -81,7 +81,7 @@ Index lists the six experiments. Detail: title, stars, description, tech, GitHub
 
 ### Contact
 
-Eyebrow `Contact`. H1 `Let’s build something great together.` Supporting paragraph. `hello@jack.dev` mailto. Line `Remote · Available worldwide`. Form: Name, Email, Message, `Send Message`.
+Eyebrow `Contact`. H1 and supporting paragraph aligned with the professional positioning. Use a verified contact channel owned by Bruno. Availability and location claims must be confirmed before publication. Form: Name, Email, Message, `Send Message`.
 
 No backend. Client validation. On valid submit, replace the form with a success state that does not navigate away. Do not claim the message was emailed if it was not.
 
@@ -228,7 +228,7 @@ Implement with CSS first. Add a client component only for intersection observe /
 - Form labels are visible, not placeholder-only.
 - Target size ≥ 24px (pill buttons exceed this).
 - `prefers-reduced-motion` honored as above.
-- Language `lang="en"` on `<html>` (template copy is English).
+- Language `lang="en"` on the primary international experience. Any Portuguese journey must declare `pt-BR` appropriately.
 
 ## Performance Requirements
 
@@ -241,7 +241,7 @@ Implement with CSS first. Add a client component only for intersection observe /
 
 ## SEO Requirements
 
-- Root metadata: title template `%s · Jack Frisman`, default title matching the persona, description “Full-stack developer building digital products people actually enjoy using.”
+- Root metadata: title template using Bruno's professional identity, with a default title and description aligned to Senior Backend Engineer positioning and supported by verifiable content.
 - Per-route `title` + `description`.
 - Open Graph: title, description, type `website`. OG image: locally generated or a simple `opengraph-image` route — not the Framer CDN PNG.
 - Favicon placeholder in `app/`.
@@ -249,7 +249,7 @@ Implement with CSS first. Add a client component only for intersection observe /
 
 ## Acceptance Criteria
 
-Milestone 1 is done when all of the following are true:
+The current portfolio experience is done when all of the following are true:
 
 1. Routes in the table exist and internal links resolve.
 2. Home section order matches this spec.
@@ -262,7 +262,7 @@ Milestone 1 is done when all of the following are true:
 9. Reduced-motion users get no infinite tickers and no large translate reveals.
 10. No Framer-hosted image URLs in the shipped app.
 11. Documentation (`AGENTS.md`, spec, ADRs, plan, README) is present.
-12. Work is committed on `main`.
+12. Work is committed on a focused feature branch and is ready for review before merge to `main`.
 
 ## Known Unknowns
 

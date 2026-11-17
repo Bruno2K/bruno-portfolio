@@ -13,7 +13,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Mission
 
-This repository implements the professional portfolio of Bruno. Milestone 1 is a faithful reconstruction of the Portfoliox visual system using placeholder persona copy (Jack Frisman). Later work replaces content, not the design system, unless a spec change is explicit.
+This repository implements Bruno's professional portfolio. Its primary purpose is to present verifiable evidence of senior backend engineering work to international recruiters and hiring managers. Its secondary purpose is to support freelancing opportunities in Brazil without diluting the international positioning.
+
+The existing Portfoliox-inspired visual system is the design baseline. Evolve the professional content and product journeys without replacing that system unless an explicit specification change requires it.
 
 ## Engineering Principles
 
@@ -69,9 +71,12 @@ A task is not done if:
 - acceptance criteria in the spec or task are unmet
 - the Framer badge, analytics, auth, or a CMS were added “for later”
 
-## Content vs design
+## Professional content and design
 
-Until a personalization task is opened, keep Jack Frisman placeholder copy. Changing names, projects, or colors to “improve” the portfolio is out of scope.
+- Use Bruno's verified professional identity and evidence-based project content; do not restore or preserve template personas.
+- Keep the primary experience in English for international hiring. Portuguese content may support the distinct Brazilian freelancing journey.
+- Do not invent employers, responsibilities, metrics, production claims, language proficiency, availability, or project outcomes.
+- Treat content work as separate from visual redesign. Preserve existing tokens, layout rules, responsiveness, accessibility, and interaction conventions unless the task explicitly changes the spec.
 
 ## Commits
 
