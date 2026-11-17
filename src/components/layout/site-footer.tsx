@@ -1,7 +1,17 @@
-import { footerNav, site } from "@/content/site";
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
+import type { Locale } from "@/i18n/config";
+import { localizePath } from "@/i18n/routing";
+import type { Dictionary } from "@/i18n/types";
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  locale: Locale;
+  site: Dictionary["site"];
+  footerNav: Dictionary["footerNav"];
+  copy: Dictionary["ui"]["footer"];
+};
+
+export function SiteFooter({ locale, site, footerNav, copy }: SiteFooterProps) {
   return (
     <footer className="border-line bg-canvas border-t pt-10 pb-[130px] max-[809px]:pt-8 max-[809px]:pb-20">
       <Container className="mid:grid-cols-4 grid gap-12">
@@ -10,23 +20,23 @@ export function SiteFooter() {
           <p className="text-eyebrow">{site.location}</p>
         </div>
         <div>
-          <p className="text-eyebrow mb-5">Navigation</p>
+          <p className="text-eyebrow mb-5">{copy.navigation}</p>
           <ul className="flex flex-col gap-3">
             {footerNav.map((item) => (
               <li key={item.label}>
-                <a href={item.href} className="nav-link">
+                <Link href={localizePath(locale, item.href)} className="nav-link">
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <p className="text-eyebrow mb-5">Contact</p>
+          <p className="text-eyebrow mb-5">{copy.contact}</p>
           <ul className="flex flex-col gap-3">
             <li>
               <a href={`mailto:${site.contactEmail}`} className="nav-link">
-                Email
+                {copy.email}
               </a>
             </li>
             <li>
@@ -43,7 +53,7 @@ export function SiteFooter() {
         </div>
       </Container>
       <Container className="mt-16">
-        <p className="text-muted-2 text-[13px]">© 2026 Bruno Ferreira. All rights reserved.</p>
+        <p className="text-muted-2 text-[13px]">{copy.copyright}</p>
       </Container>
     </footer>
   );

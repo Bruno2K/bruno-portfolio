@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cx } from "@/lib/cx";
 
-type Accent = "blue" | "ink" | "wash" | "line";
+export type Accent = "blue" | "ink" | "wash" | "line";
 
 const accents: Record<Accent, string> = {
   blue: "from-[#2b4bf2]/18 via-[#ececec] to-[#f5f5f5]",

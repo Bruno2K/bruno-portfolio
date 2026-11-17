@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import type { Dictionary } from "@/i18n/types";
 
 type Status = "idle" | "error";
 
 type ContactFormProps = {
   recipient: string;
+  copy: Dictionary["ui"]["contact"]["form"];
 };
 
-export function ContactForm({ recipient }: ContactFormProps) {
+export function ContactForm({ recipient, copy }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
 
   return (
@@ -28,8 +30,13 @@ export function ContactForm({ recipient }: ContactFormProps) {
         const name = String(formData.get("name") ?? "").trim();
         const email = String(formData.get("email") ?? "").trim();
         const message = String(formData.get("message") ?? "").trim();
-        const subject = `Portfolio contact from ${name}`;
-        const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
+        const subject = `${copy.subjectPrefix} ${name}`;
+        const body = [
+          `${copy.bodyName}: ${name}`,
+          `${copy.bodyEmail}: ${email}`,
+          "",
+          message,
+        ].join("\n");
         const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
         try {
@@ -41,44 +48,43 @@ export function ContactForm({ recipient }: ContactFormProps) {
       aria-describedby="contact-form-help"
     >
       <p id="contact-form-help" className="text-muted text-[15px] leading-6">
-        This form opens a pre-filled draft in your email app. Nothing is sent
-        automatically.
+        {copy.help}
       </p>
       <label className="flex flex-col gap-2">
-        <span className="text-eyebrow">Name</span>
+        <span className="text-eyebrow">{copy.name}</span>
         <input
           name="name"
           type="text"
           required
-          placeholder="Jane Smith"
+          placeholder={copy.namePlaceholder}
           autoComplete="name"
           className="border-line bg-surface text-ink placeholder:text-muted-2 rounded-[var(--radius-control)] border px-4 py-3 text-[16px] outline-none"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-eyebrow">Email</span>
+        <span className="text-eyebrow">{copy.email}</span>
         <input
           name="email"
           type="email"
           required
-          placeholder="jane@studio.com"
+          placeholder={copy.emailPlaceholder}
           autoComplete="email"
           className="border-line bg-surface text-ink placeholder:text-muted-2 rounded-[var(--radius-control)] border px-4 py-3 text-[16px] outline-none"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-eyebrow">Message</span>
+        <span className="text-eyebrow">{copy.message}</span>
         <textarea
           name="message"
           required
           rows={6}
-          placeholder="Tell me about the project."
+          placeholder={copy.messagePlaceholder}
           className="border-line bg-surface text-ink placeholder:text-muted-2 resize-y rounded-[var(--radius-control)] border px-4 py-3 text-[16px] outline-none"
         />
       </label>
       {status === "error" ? (
         <p role="alert" className="text-muted text-[15px] leading-6">
-          Your email app could not be opened. Email me directly at{" "}
+          {copy.errorBeforeEmail}{" "}
           <a className="nav-link font-medium" href={`mailto:${recipient}`}>
             {recipient}
           </a>
@@ -90,7 +96,7 @@ export function ContactForm({ recipient }: ContactFormProps) {
           type="submit"
           className="rounded-chip border-ink bg-ink text-accent-ink hover:bg-ink-deep inline-flex items-center justify-center border px-[22px] py-[14px] text-[14px] leading-none font-medium transition-colors duration-300"
         >
-          Open Email Draft
+          {copy.submit}
         </button>
       </div>
     </form>

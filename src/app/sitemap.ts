@@ -1,17 +1,17 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/content/projects";
-import { sideProjects } from "@/content/side-projects";
-import { getCanonicalUrl } from "@/lib/metadata";
+import { en } from "@/i18n/dictionaries/en";
+import { createLocalizedSitemap } from "@/i18n/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = ["/", "/projects", "/side-projects", "/contact"];
-  const projectPaths = projects.map((project) => `/projects/${project.slug}`);
-  const evidencePaths = sideProjects.map(
+  const projectPaths = en.projects.map((project) => `/projects/${project.slug}`);
+  const evidencePaths = en.sideProjects.map(
     (project) => `/side-projects/${project.slug}`,
   );
 
-  return [...staticPaths, ...projectPaths, ...evidencePaths].flatMap((path) => {
-    const url = getCanonicalUrl(path);
-    return url ? [{ url }] : [];
-  });
+  return createLocalizedSitemap([
+    ...staticPaths,
+    ...projectPaths,
+    ...evidencePaths,
+  ]);
 }

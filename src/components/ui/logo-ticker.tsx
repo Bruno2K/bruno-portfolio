@@ -1,5 +1,3 @@
-import { trustedBy } from "@/content/site";
-
 const icons = [
   function Cube() {
     return (
@@ -68,8 +66,14 @@ const icons = [
   },
 ];
 
-export function LogoTicker() {
-  const items = [...trustedBy, ...trustedBy];
+export function LogoTicker({
+  items: sourceItems,
+  accessibleLabel,
+}: {
+  items: readonly string[];
+  accessibleLabel: string;
+}) {
+  const items = [...sourceItems, ...sourceItems];
 
   return (
     <div className="w-full overflow-hidden">
@@ -83,7 +87,9 @@ export function LogoTicker() {
           );
         })}
       </ul>
-      <p className="sr-only">Trusted by {trustedBy.join(", ")}</p>
+      <p className="sr-only">
+        {accessibleLabel}: {sourceItems.join(", ")}
+      </p>
     </div>
   );
 }

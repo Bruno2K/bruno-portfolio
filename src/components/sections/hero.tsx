@@ -1,9 +1,18 @@
-import { site } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
 
-export function Hero() {
+export function Hero({
+  locale,
+  site,
+  copy,
+}: {
+  locale: Locale;
+  site: Dictionary["site"];
+  copy: Dictionary["ui"]["home"];
+}) {
   return (
     <section id="top" className="pt-10 pb-8 max-[809px]:pt-8 max-[809px]:pb-6">
       <Container className="grid items-start gap-12 mid:grid-cols-[minmax(0,1fr)_minmax(280px,0.86fr)] mid:gap-16 wide:gap-20">
@@ -15,11 +24,11 @@ export function Hero() {
           <h1 className="text-display">{site.tagline}</h1>
           <p className="text-lead max-w-[52ch]">{site.lead}</p>
           <div className="flex flex-col items-stretch gap-3 pt-2 min-[480px]:flex-row min-[480px]:items-center">
-            <Button href="/#projects" icon="down">
-              View Engineering Work
+            <Button href={`/${locale}/#projects`} icon="down">
+              {copy.heroPrimary}
             </Button>
-            <Button href="/contact" variant="secondary" icon="out">
-              Contact Bruno
+            <Button href={`/${locale}/contact`} variant="secondary" icon="out">
+              {copy.heroSecondary}
             </Button>
           </div>
         </div>

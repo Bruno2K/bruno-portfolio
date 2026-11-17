@@ -1,196 +1,85 @@
-import type { Project } from "@/content/projects";
+import type { Dictionary } from "@/i18n/types";
 
-const evidenceGroups = [
-  {
-    title: "Architecture",
-    labels: ["C4 architecture", "Sequence diagrams", "Failure modes", "Domain invariants"],
-  },
-  {
-    title: "Reliability",
-    labels: ["Payment reliability ADR", "Order idempotency ADR", "Transactional outbox ADR"],
-  },
-  {
-    title: "Operations",
-    labels: ["Observability", "Operations runbook"],
-  },
-  {
-    title: "Performance",
-    labels: ["Performance evidence", "Load-testing procedure", "Controlled CI load workflow"],
-  },
-] as const;
+type NeonEngineeringDossierProps = {
+  project: Dictionary["projects"][number];
+  copy: Dictionary["neonDossier"];
+};
 
-const reviewerProof = [
-  {
-    label: "Reviewer guide",
-    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/portfolio/reviewer-guide.md",
-    description: "A 5–15 minute path for hiring managers and Senior/Staff/Principal reviewers.",
-  },
-  {
-    label: "Backend case study",
-    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/portfolio/case-study.md",
-    description: "The canonical problem, decisions, hardest failure modes, trade-offs, and final engineering result.",
-  },
-  {
-    label: "Evidence index",
-    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/portfolio/evidence-index.md",
-    description: "A claim-to-proof map connecting invariants and decisions to implementation, tests, and operational evidence.",
-  },
-  {
-    label: "Final Senior Backend audit",
-    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/verification/final-senior-backend-audit-2026-09-14.md",
-    description: "Adversarial review across 28 dimensions and 34 findings; all seven P0 findings were corrected and re-verified.",
-  },
-  {
-    label: "Production & operational proof",
-    href: "https://github.com/Bruno2K/neon-arsenal-market/blob/main/docs/verification/production-operational-proof-2026-09-15.md",
-    description: "Bounded evidence for topology, probes, recovery, SLO targets, game days, runbooks, and explicit unknowns.",
-  },
-] as const;
-
-const guarantees = [
-  "Two concurrent buyers cannot both acquire the same unique listing.",
-  "Replaying the same valid order request does not create a second order.",
-  "Duplicate verified PayPal webhook delivery converges to a no-op after the event is persisted.",
-  "A lost payment webhook can be recovered through reconciliation against PayPal.",
-  "Captured money that cannot be fulfilled becomes an explicit refund obligation instead of hidden state drift.",
-  "Background side effects are coordinated through durable PostgreSQL records before a broker is justified.",
-] as const;
-
-const decisions = [
-  {
-    title: "PostgreSQL owns the invariant",
-    decision: "Keep unique-inventory correctness in conditional database state transitions.",
-    why: "Process memory cannot safely coordinate competing buyers once more than one request or API replica is involved.",
-  },
-  {
-    title: "Modular monolith before microservices",
-    decision: "Keep one deployable API while domain boundaries remain explicit inside the codebase.",
-    why: "The current product does not justify the operational cost of distributed ownership, networking, deployment, and recovery.",
-  },
-  {
-    title: "Reconciliation over webhook trust",
-    decision: "Treat webhooks as an unreliable signal, not the only path to payment truth.",
-    why: "Delivery can be duplicated, delayed, or lost, so recovery must converge through persisted state and provider reconciliation.",
-  },
-  {
-    title: "Durable outbox before a broker",
-    decision: "Commit business state and outbox records together, then publish from an idempotent in-process job.",
-    why: "A queue should arrive when measured backlog, replay, ordering, throughput, or independent-consumer requirements make it necessary.",
-  },
-] as const;
-
-const frozenLimits = [
-  {
-    title: "Confirmed-order cancellation policy",
-    detail: "The customer cancellation/refund semantics for already-confirmed orders remain an explicit product decision rather than a hidden implementation gap.",
-  },
-  {
-    title: "Deeper payment-link and capture recovery",
-    detail: "Two legitimate recovery-depth improvements remain frozen because they do not create a duplicate economic effect in the current system.",
-  },
-  {
-    title: "Standalone reservation abuse hardening",
-    detail: "Authenticated standalone reserve can still create TTL-bounded inventory griefing; closing it requires an explicit product/API decision.",
-  },
-  {
-    title: "Production evidence boundaries",
-    detail: "Production OTLP reception, managed backup/restore, sustained production SLOs, HA, and multi-region capacity are not claimed because they were not proven.",
-  },
-] as const;
-
-export function NeonEngineeringDossier({ project }: { project: Project }) {
+export function NeonEngineeringDossier({ project, copy }: NeonEngineeringDossierProps) {
   const evidence = project.evidence ?? [];
 
   return (
     <div className="flex flex-col gap-16">
-      <section className="flex flex-col gap-6 border-y border-line py-10">
+      <section className="border-line flex flex-col gap-6 border-y py-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-col gap-3">
-            <p className="text-eyebrow">At a glance</p>
-            <h2 className="text-h3">The case in under a minute.</h2>
+            <p className="text-eyebrow">{copy.glance.eyebrow}</p>
+            <h2 className="text-h3">{copy.glance.title}</h2>
           </div>
-          <span className="border border-line px-3 py-2 text-eyebrow">Portfolio Complete · Maintenance Mode</span>
+          <span className="border-line text-eyebrow border px-3 py-2">{copy.glance.status}</span>
         </div>
-        <dl className="grid gap-3 mid:grid-cols-2">
-          <div className="border border-line p-5">
-            <dt className="text-eyebrow">System</dt>
-            <dd className="text-h4 mt-3">Marketplace for unique inventory</dd>
-          </div>
-          <div className="border border-line p-5">
-            <dt className="text-eyebrow">Core challenge</dt>
-            <dd className="text-h4 mt-3">Prevent double-selling while payment state remains recoverable</dd>
-          </div>
-          <div className="border border-line p-5">
-            <dt className="text-eyebrow">Architecture</dt>
-            <dd className="text-h4 mt-3">Modular monolith · PostgreSQL source of truth</dd>
-          </div>
-          <div className="border border-line p-5">
-            <dt className="text-eyebrow">Engineering focus</dt>
-            <dd className="text-h4 mt-3">Concurrency · Idempotency · Payments · Recovery · Operability</dd>
-          </div>
+        <dl className="mid:grid-cols-2 grid gap-3">
+          {copy.glance.items.map((item) => (
+            <div key={item.label} className="border-line border p-5">
+              <dt className="text-eyebrow">{item.label}</dt>
+              <dd className="text-h4 mt-3">{item.value}</dd>
+            </div>
+          ))}
         </dl>
-        <p className="text-body">
-          The functional roadmap is closed. The project is intentionally frozen as a portfolio case study; future architecture work requires a measured problem and a new engineering decision, not a larger technology stack.
-        </p>
+        <p className="text-body">{copy.glance.description}</p>
       </section>
 
       <section className="flex flex-col gap-7">
         <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">Architecture</p>
-          <h2 className="text-h3">Current system, without decorative infrastructure.</h2>
-          <p className="text-body">
-            The current deployment is intentionally small: browser traffic reaches a Vite SPA, the SPA calls one Express API, and PostgreSQL owns business truth. External providers remain outside that trust boundary.
-          </p>
+          <p className="text-eyebrow">{copy.architecture.eyebrow}</p>
+          <h2 className="text-h3">{copy.architecture.title}</h2>
+          <p className="text-body">{copy.architecture.description}</p>
         </div>
-
-        <div className="border border-line p-5 mid:p-7">
+        <div className="border-line border p-5 mid:p-7">
           <div className="mx-auto flex max-w-[620px] flex-col items-center gap-3 text-center">
-            <div className="w-full max-w-[280px] border border-line p-4">
-              <p className="text-eyebrow">Client</p>
-              <p className="text-h4 mt-2">Browser</p>
+            <div className="border-line w-full max-w-[280px] border p-4">
+              <p className="text-eyebrow">{copy.architecture.client}</p>
+              <p className="text-h4 mt-2">{copy.architecture.browser}</p>
             </div>
             <span className="text-muted text-[18px]" aria-hidden="true">↓</span>
-            <div className="w-full max-w-[360px] border border-line p-4">
+            <div className="border-line w-full max-w-[360px] border p-4">
               <p className="text-eyebrow">Vercel</p>
               <p className="text-h4 mt-2">Vite SPA</p>
-              <p className="text-body mt-2 text-[14px]">Static frontend. Not a security boundary.</p>
+              <p className="text-body mt-2 text-[14px]">{copy.architecture.staticFrontend}</p>
             </div>
             <span className="text-muted text-[18px]" aria-hidden="true">↓ HTTPS JSON · JWT</span>
-            <div className="w-full border-2 border-ink p-5">
+            <div className="border-ink w-full border-2 p-5">
               <p className="text-eyebrow">Render</p>
               <p className="text-h3 mt-2">Express API</p>
-              <div className="mt-4 grid grid-cols-2 gap-2 text-left text-[14px] text-muted mid:grid-cols-4">
+              <div className="text-muted mid:grid-cols-4 mt-4 grid grid-cols-2 gap-2 text-left text-[14px]">
                 <span>Auth</span><span>Orders</span><span>Listings</span><span>Payments</span>
                 <span>Ledger</span><span>Reconcile</span><span>Outbox</span><span>Jobs</span>
               </div>
             </div>
-            <div className="grid w-full gap-3 mid:grid-cols-2">
-              <div className="border border-line p-4">
-                <p className="text-eyebrow">Source of truth</p>
+            <div className="mid:grid-cols-2 grid w-full gap-3">
+              <div className="border-line border p-4">
+                <p className="text-eyebrow">{copy.architecture.sourceOfTruth}</p>
                 <p className="text-h4 mt-2">PostgreSQL</p>
-                <p className="text-body mt-2 text-[14px]">Orders, listings, payments, ledger, idempotency, webhook and outbox state.</p>
+                <p className="text-body mt-2 text-[14px]">{copy.architecture.databaseDetail}</p>
               </div>
-              <div className="border border-line p-4">
-                <p className="text-eyebrow">External boundaries</p>
+              <div className="border-line border p-4">
+                <p className="text-eyebrow">{copy.architecture.externalBoundaries}</p>
                 <p className="text-h4 mt-2">PayPal · Resend · cs2.sh</p>
-                <p className="text-body mt-2 text-[14px]">Untrusted integrations around the authoritative database state.</p>
+                <p className="text-body mt-2 text-[14px]">{copy.architecture.integrationsDetail}</p>
               </div>
             </div>
           </div>
         </div>
-
-        <p className="text-muted border-l-2 border-accent pl-4 text-[14px] leading-6">
-          Redis, Kafka, SQS, a separate worker service, ECS/Fargate, RDS, and an ALB are not presented as live architecture because they are not part of the current canonical deployment.
-        </p>
+        <p className="text-muted border-accent border-l-2 pl-4 text-[14px] leading-6">{copy.architecture.limitation}</p>
       </section>
 
-      <section className="flex flex-col gap-7 border-y border-line py-10">
+      <section className="border-line flex flex-col gap-7 border-y py-10">
         <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">What the design guarantees</p>
-          <h2 className="text-h3">Engineering outcomes, not feature claims.</h2>
+          <p className="text-eyebrow">{copy.guaranteeSection.eyebrow}</p>
+          <h2 className="text-h3">{copy.guaranteeSection.title}</h2>
         </div>
-        <div className="grid gap-x-8 gap-y-5 mid:grid-cols-2">
-          {guarantees.map((guarantee, index) => (
+        <div className="mid:grid-cols-2 grid gap-x-8 gap-y-5">
+          {copy.guarantees.map((guarantee, index) => (
             <div key={guarantee} className="grid grid-cols-[32px_1fr] gap-3">
               <span className="text-eyebrow pt-1">0{index + 1}</span>
               <p className="text-body">{guarantee}</p>
@@ -201,101 +90,93 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
 
       <section className="flex flex-col gap-10">
         <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">Critical flows</p>
-          <h2 className="text-h3">Where correctness is won or lost.</h2>
+          <p className="text-eyebrow">{copy.flows.eyebrow}</p>
+          <h2 className="text-h3">{copy.flows.title}</h2>
         </div>
-
         <article className="flex flex-col gap-6">
           <div>
-            <p className="text-eyebrow">01 · Concurrency</p>
-            <h3 className="text-h3 mt-2">Two buyers. One listing. One winner.</h3>
+            <p className="text-eyebrow">{copy.flows.concurrency.eyebrow}</p>
+            <h3 className="text-h3 mt-2">{copy.flows.concurrency.title}</h3>
           </div>
-          <div className="border border-line p-5 mid:p-7">
-            <div className="grid items-center gap-3 text-center mid:grid-cols-[1fr_auto_1fr]">
-              <div className="border border-line p-4"><p className="text-h4">Buyer A</p></div>
+          <div className="border-line border p-5 mid:p-7">
+            <div className="mid:grid-cols-[1fr_auto_1fr] grid items-center gap-3 text-center">
+              <div className="border-line border p-4"><p className="text-h4">{copy.flows.concurrency.buyerA}</p></div>
               <span className="text-muted" aria-hidden="true">→</span>
-              <div className="border border-line p-4"><p className="text-h4">POST /orders</p></div>
-              <div className="border border-line p-4"><p className="text-h4">Buyer B</p></div>
+              <div className="border-line border p-4"><p className="text-h4">POST /orders</p></div>
+              <div className="border-line border p-4"><p className="text-h4">{copy.flows.concurrency.buyerB}</p></div>
               <span className="text-muted" aria-hidden="true">→</span>
-              <div className="border border-line p-4"><p className="text-h4">same listing</p></div>
+              <div className="border-line border p-4"><p className="text-h4">{copy.flows.concurrency.sameListing}</p></div>
             </div>
-            <div className="my-3 text-center text-muted" aria-hidden="true">↓</div>
-            <div className="mx-auto max-w-[480px] border-2 border-ink p-5 text-center">
-              <p className="text-eyebrow">PostgreSQL conditional transition</p>
+            <div className="text-muted my-3 text-center" aria-hidden="true">↓</div>
+            <div className="border-ink mx-auto max-w-[480px] border-2 p-5 text-center">
+              <p className="text-eyebrow">{copy.flows.concurrency.transition}</p>
               <p className="text-h3 mt-2">ACTIVE → RESERVED</p>
             </div>
-            <div className="my-3 text-center text-muted" aria-hidden="true">↓</div>
-            <div className="grid gap-3 mid:grid-cols-2">
-              <div className="border border-line p-4 text-center">
-                <p className="text-eyebrow">Winner</p>
-                <p className="text-h4 mt-2">201 · order committed</p>
+            <div className="text-muted my-3 text-center" aria-hidden="true">↓</div>
+            <div className="mid:grid-cols-2 grid gap-3">
+              <div className="border-line border p-4 text-center">
+                <p className="text-eyebrow">{copy.flows.concurrency.winner}</p>
+                <p className="text-h4 mt-2">{copy.flows.concurrency.winnerResult}</p>
               </div>
-              <div className="border border-line p-4 text-center">
-                <p className="text-eyebrow">Loser</p>
-                <p className="text-h4 mt-2">409 · reservation conflict</p>
+              <div className="border-line border p-4 text-center">
+                <p className="text-eyebrow">{copy.flows.concurrency.loser}</p>
+                <p className="text-h4 mt-2">{copy.flows.concurrency.loserResult}</p>
               </div>
             </div>
           </div>
-          <p className="text-ink border-l-2 border-accent pl-4 text-[15px] font-medium leading-6">
-            The invariant lives in PostgreSQL, so correctness does not depend on which API process receives the request.
-          </p>
+          <p className="text-ink border-accent border-l-2 pl-4 text-[15px] leading-6 font-medium">{copy.flows.concurrency.outcome}</p>
         </article>
 
-        <article className="flex flex-col gap-6 border-line border-t pt-8">
+        <article className="border-line flex flex-col gap-6 border-t pt-8">
           <div>
-            <p className="text-eyebrow">02 · Partial failure</p>
-            <h3 className="text-h3 mt-2">Money moved. Fulfillment did not.</h3>
+            <p className="text-eyebrow">{copy.flows.partialFailure.eyebrow}</p>
+            <h3 className="text-h3 mt-2">{copy.flows.partialFailure.title}</h3>
           </div>
-          <div className="border border-line p-5 mid:p-7">
+          <div className="border-line border p-5 mid:p-7">
             <div className="mx-auto flex max-w-[520px] flex-col items-center gap-3 text-center">
-              <div className="w-full border border-line p-4"><p className="text-h4">PayPal capture COMPLETED</p></div>
+              <div className="border-line w-full border p-4"><p className="text-h4">{copy.flows.partialFailure.captured}</p></div>
               <span className="text-muted" aria-hidden="true">↓</span>
-              <div className="w-full border border-line p-4"><p className="text-h4">Local fulfillment path fails</p></div>
+              <div className="border-line w-full border p-4"><p className="text-h4">{copy.flows.partialFailure.failure}</p></div>
               <span className="text-muted" aria-hidden="true">↓</span>
-              <div className="w-full border-2 border-ink p-4">
-                <p className="text-eyebrow">Persist, do not hide</p>
-                <p className="text-h4 mt-2">Durable refund obligation</p>
+              <div className="border-ink w-full border-2 p-4">
+                <p className="text-eyebrow">{copy.flows.partialFailure.persist}</p>
+                <p className="text-h4 mt-2">{copy.flows.partialFailure.obligation}</p>
               </div>
               <span className="text-muted" aria-hidden="true">↓</span>
-              <div className="w-full border border-line p-4"><p className="text-h4">Reconciliation / compensation</p></div>
+              <div className="border-line w-full border p-4"><p className="text-h4">{copy.flows.partialFailure.recovery}</p></div>
             </div>
           </div>
-          <p className="text-ink border-l-2 border-accent pl-4 text-[15px] font-medium leading-6">
-            Payment truth is recoverable even when delivery is duplicated, delayed, lost, or interrupted halfway through a workflow.
-          </p>
+          <p className="text-ink border-accent border-l-2 pl-4 text-[15px] leading-6 font-medium">{copy.flows.partialFailure.outcome}</p>
         </article>
 
         {project.criticalFlows?.[2] ? (
-          <article className="flex flex-col gap-4 border-line border-t pt-8">
-            <p className="text-eyebrow">03 · Durable side effects</p>
+          <article className="border-line flex flex-col gap-4 border-t pt-8">
+            <p className="text-eyebrow">{copy.flows.durableEffects}</p>
             <h3 className="text-h3">{project.criticalFlows[2].title}</h3>
             <ol className="flex flex-col gap-3">
               {project.criticalFlows[2].steps.map((step, index) => (
-                <li key={step} className="grid grid-cols-[36px_1fr] gap-3 text-body">
-                  <span className="text-eyebrow pt-1">0{index + 1}</span>
-                  <span>{step}</span>
+                <li key={step} className="text-body grid grid-cols-[36px_1fr] gap-3">
+                  <span className="text-eyebrow pt-1">0{index + 1}</span><span>{step}</span>
                 </li>
               ))}
             </ol>
-            <p className="text-ink border-l-2 border-accent pl-4 text-[15px] font-medium leading-6">
-              {project.criticalFlows[2].outcome}
-            </p>
+            <p className="text-ink border-accent border-l-2 pl-4 text-[15px] leading-6 font-medium">{project.criticalFlows[2].outcome}</p>
           </article>
         ) : null}
       </section>
 
-      <section className="flex flex-col gap-7 border-y border-line py-10">
+      <section className="border-line flex flex-col gap-7 border-y py-10">
         <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">Key engineering decisions</p>
-          <h2 className="text-h3">The important part is what was deliberately not added.</h2>
+          <p className="text-eyebrow">{copy.decisionsSection.eyebrow}</p>
+          <h2 className="text-h3">{copy.decisionsSection.title}</h2>
         </div>
-        <div className="grid gap-3 mid:grid-cols-2">
-          {decisions.map((item) => (
-            <article key={item.title} className="border border-line p-5">
+        <div className="mid:grid-cols-2 grid gap-3">
+          {copy.decisions.map((item) => (
+            <article key={item.title} className="border-line border p-5">
               <h3 className="text-h4">{item.title}</h3>
-              <p className="text-ink mt-4 text-[14px] font-medium">Decision</p>
+              <p className="text-ink mt-4 text-[14px] font-medium">{copy.decisionsSection.decision}</p>
               <p className="text-body mt-1 text-[15px]">{item.decision}</p>
-              <p className="text-ink mt-4 text-[14px] font-medium">Why</p>
+              <p className="text-ink mt-4 text-[14px] font-medium">{copy.decisionsSection.why}</p>
               <p className="text-body mt-1 text-[15px]">{item.why}</p>
             </article>
           ))}
@@ -304,36 +185,28 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
 
       <section className="flex flex-col gap-7">
         <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">Scaling path</p>
-          <h2 className="text-h3">Scale from measured pressure, not from a technology checklist.</h2>
+          <p className="text-eyebrow">{copy.scaling.eyebrow}</p>
+          <h2 className="text-h3">{copy.scaling.title}</h2>
         </div>
-        <div className="grid gap-3 mid:grid-cols-3">
-          <article className="border border-line p-5">
-            <p className="text-eyebrow">Today</p>
-            <p className="text-body mt-3">One modular-monolith API, one PostgreSQL source of truth, and idempotent in-process jobs.</p>
-          </article>
-          <article className="border border-line p-5">
-            <p className="text-eyebrow">Triggers</p>
-            <p className="text-body mt-3">Database saturation, connection pressure, shared rate-limit needs, sustained job lag, or an outbox backlog that requires independent scaling.</p>
-          </article>
-          <article className="border border-line p-5">
-            <p className="text-eyebrow">Possible next steps</p>
-            <p className="text-body mt-3">Redis for demonstrated shared coordination, a separate worker for independent background throughput, and a broker only when replay, ordering, throughput, or multi-consumer requirements justify it.</p>
-          </article>
+        <div className="mid:grid-cols-3 grid gap-3">
+          {copy.scaling.items.map((item) => (
+            <article key={item.label} className="border-line border p-5">
+              <p className="text-eyebrow">{item.label}</p>
+              <p className="text-body mt-3">{item.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="flex flex-col gap-7 border-y border-line py-10">
+      <section className="border-line flex flex-col gap-7 border-y py-10">
         <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">What was deliberately left unfinished</p>
-          <h2 className="text-h3">Known limits are frozen, not disguised.</h2>
-          <p className="text-body">
-            The final audit separates credible future improvements from portfolio theater. These limits remain visible because closing them would require a real product, operational, or scale requirement.
-          </p>
+          <p className="text-eyebrow">{copy.unfinished.eyebrow}</p>
+          <h2 className="text-h3">{copy.unfinished.title}</h2>
+          <p className="text-body">{copy.unfinished.description}</p>
         </div>
-        <div className="grid gap-3 mid:grid-cols-2">
-          {frozenLimits.map((item) => (
-            <article key={item.title} className="border border-line p-5">
+        <div className="mid:grid-cols-2 grid gap-3">
+          {copy.frozenLimits.map((item) => (
+            <article key={item.title} className="border-line border p-5">
               <h3 className="text-h4">{item.title}</h3>
               <p className="text-body mt-3 text-[15px]">{item.detail}</p>
             </article>
@@ -344,61 +217,54 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
       {project.sections.length ? (
         <section className="flex flex-col gap-8">
           <div className="flex flex-col gap-3">
-            <p className="text-eyebrow">Implementation notes</p>
-            <h2 className="text-h3">How the design is enforced in code and operations.</h2>
+            <p className="text-eyebrow">{copy.implementation.eyebrow}</p>
+            <h2 className="text-h3">{copy.implementation.title}</h2>
           </div>
           {project.sections.map((section) => (
-            <article key={section.heading} className="flex flex-col gap-3 border-line border-t pt-6">
-              <h3 className="text-h4">{section.heading}</h3>
-              <p className="text-body">{section.body}</p>
+            <article key={section.heading} className="border-line flex flex-col gap-3 border-t pt-6">
+              <h3 className="text-h4">{section.heading}</h3><p className="text-body">{section.body}</p>
             </article>
           ))}
         </section>
       ) : null}
 
-      <section className="flex flex-col gap-8 border-y border-line py-10">
+      <section className="border-line flex flex-col gap-8 border-y py-10">
         <div className="flex flex-col gap-3">
-          <p className="text-eyebrow">Reviewer proof</p>
-          <h2 className="text-h3">Start with the high-signal artifacts.</h2>
-          <p className="text-body">
-            The project has a dedicated review path, a canonical case study, a claim-to-proof index, an adversarial Senior Backend audit, and a bounded operational-proof phase.
-          </p>
+          <p className="text-eyebrow">{copy.reviewer.eyebrow}</p>
+          <h2 className="text-h3">{copy.reviewer.title}</h2>
+          <p className="text-body">{copy.reviewer.description}</p>
         </div>
-        <div className="grid gap-3 mid:grid-cols-2">
-          {reviewerProof.map((item) => (
-            <a key={item.href} href={item.href} target="_blank" rel="noreferrer" className="group border border-line p-5 transition-colors hover:border-ink">
+        <div className="mid:grid-cols-2 grid gap-3">
+          {copy.reviewerProof.map((item) => (
+            <a key={item.href} href={item.href} target="_blank" rel="noreferrer" className="border-line hover:border-ink group border p-5 transition-colors">
               <div className="flex items-start justify-between gap-4">
-                <h3 className="text-h4">{item.label}</h3>
-                <span className="text-muted group-hover:text-ink" aria-hidden="true">↗</span>
+                <h3 className="text-h4">{item.label}</h3><span className="text-muted group-hover:text-ink" aria-hidden="true">↗</span>
               </div>
               <p className="text-body mt-3 text-[15px]">{item.description}</p>
             </a>
           ))}
         </div>
-        <p className="text-muted border-l-2 border-accent pl-4 text-[14px] leading-6">
-          Final audit scope: 28 dimensions, 34 findings, seven P0 findings corrected and re-verified, unresolved P0 = 0. Remaining P1 limitations are documented and frozen rather than presented as completed work.
-        </p>
+        <p className="text-muted border-accent border-l-2 pl-4 text-[14px] leading-6">{copy.reviewer.audit}</p>
       </section>
 
       {evidence.length ? (
         <section className="flex flex-col gap-8">
           <div className="flex flex-col gap-3">
-            <p className="text-eyebrow">Engineering evidence</p>
-            <h2 className="text-h3">Inspect the implementation details.</h2>
-            <p className="text-body">The reviewer path above is the fast route; these repository artifacts expose the deeper architecture, reliability, operations, and performance proof.</p>
+            <p className="text-eyebrow">{copy.evidence.eyebrow}</p>
+            <h2 className="text-h3">{copy.evidence.title}</h2>
+            <p className="text-body">{copy.evidence.description}</p>
           </div>
-          {evidenceGroups.map((group) => {
-            const items = evidence.filter((item) => group.labels.includes(item.label as never));
+          {copy.evidenceGroups.map((group) => {
+            const items = evidence.filter((item) => group.labels.includes(item.label));
             if (!items.length) return null;
             return (
               <div key={group.title} className="flex flex-col gap-3">
                 <h3 className="text-eyebrow">{group.title}</h3>
-                <div className="grid gap-3 mid:grid-cols-2">
+                <div className="mid:grid-cols-2 grid gap-3">
                   {items.map((item) => (
-                    <a key={item.href} href={item.href} target="_blank" rel="noreferrer" className="group border border-line p-5 transition-colors hover:border-ink">
+                    <a key={item.href} href={item.href} target="_blank" rel="noreferrer" className="border-line hover:border-ink group border p-5 transition-colors">
                       <div className="flex items-start justify-between gap-4">
-                        <h4 className="text-h4">{item.label}</h4>
-                        <span className="text-muted group-hover:text-ink" aria-hidden="true">↗</span>
+                        <h4 className="text-h4">{item.label}</h4><span className="text-muted group-hover:text-ink" aria-hidden="true">↗</span>
                       </div>
                       <p className="text-body mt-3 text-[15px]">{item.description}</p>
                     </a>
@@ -410,11 +276,7 @@ export function NeonEngineeringDossier({ project }: { project: Project }) {
         </section>
       ) : null}
 
-      <section className="border-t border-line pt-8">
-        <p className="text-h4">
-          This project is intentionally frozen. Further architecture work requires a measured problem, not a larger technology stack.
-        </p>
-      </section>
+      <section className="border-line border-t pt-8"><p className="text-h4">{copy.finalNote}</p></section>
     </div>
   );
 }

@@ -3,12 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
-import { nav, site } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import type { Locale } from "@/i18n/config";
+import { localizePath } from "@/i18n/routing";
+import type { Dictionary } from "@/i18n/types";
 import { cx } from "@/lib/cx";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  locale: Locale;
+  site: Dictionary["site"];
+  nav: Dictionary["nav"];
+  copy: Dictionary["ui"]["header"];
+};
+
+export function SiteHeader({ locale, site, nav, copy }: SiteHeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -37,17 +47,17 @@ export function SiteHeader() {
     <header className="border-line/80 bg-canvas/80 sticky top-0 z-40 border-b backdrop-blur-md">
       <Container className="flex h-[72px] items-center justify-between gap-6">
         <Link
-          href="/"
+          href={`/${locale}`}
           className="font-display text-ink text-[17px] font-medium tracking-[-0.02em]"
         >
           {site.name}
         </Link>
         <div className="mid:flex hidden items-center gap-8">
-          <nav aria-label="Primary" className="flex items-center gap-7">
+          <nav aria-label={copy.primaryNavigation} className="flex items-center gap-7">
             {nav.map((item) => (
               <Link
                 key={item.label}
-                href={item.href}
+                href={localizePath(locale, item.href)}
                 className="nav-link"
                 data-active={pathname === item.href ? "true" : undefined}
               >
@@ -55,8 +65,9 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-          <Button href="/contact" icon="out">
-            Contact
+          <LanguageSwitcher locale={locale} labels={copy} />
+          <Button href={`/${locale}/contact`} icon="out">
+            {copy.contact}
           </Button>
         </div>
         <button
@@ -66,7 +77,7 @@ export function SiteHeader() {
           aria-controls={panelId}
           onClick={() => setOpen((value) => !value)}
         >
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          <span className="sr-only">{open ? copy.closeMenu : copy.openMenu}</span>
           <span aria-hidden="true" className="relative block h-4 w-4">
             <span
               className={cx(
@@ -95,11 +106,11 @@ export function SiteHeader() {
         className="mid:hidden border-line bg-canvas border-t"
       >
         <Container className="flex flex-col gap-6 py-8">
-          <nav aria-label="Mobile" className="flex flex-col gap-5">
+          <nav aria-label={copy.mobileNavigation} className="flex flex-col gap-5">
             {nav.map((item) => (
               <Link
                 key={item.label}
-                href={item.href}
+                href={localizePath(locale, item.href)}
                 className="font-display text-ink text-[22px] tracking-[-0.01em]"
                 onClick={() => setOpen(false)}
               >
@@ -107,9 +118,14 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
+          <LanguageSwitcher
+            locale={locale}
+            labels={copy}
+            onNavigate={() => setOpen(false)}
+          />
           <div onClick={() => setOpen(false)}>
-            <Button href="/contact" icon="out" className="w-full">
-              Contact
+            <Button href={`/${locale}/contact`} icon="out" className="w-full">
+              {copy.contact}
             </Button>
           </div>
         </Container>

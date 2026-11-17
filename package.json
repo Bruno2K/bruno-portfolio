@@ -2,10 +2,12 @@
   "name": "bruno-portfolio",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --port 43127 --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start --port 43127 --hostname 0.0.0.0",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
