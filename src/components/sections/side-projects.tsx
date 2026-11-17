@@ -1,26 +1,35 @@
 import Link from "next/link";
-import { sideProjects } from "@/content/side-projects";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SideProjectItem } from "@/components/ui/side-project-item";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
 
-export function SideProjects() {
+export function SideProjects({
+  locale,
+  projects,
+  copy,
+}: {
+  locale: Locale;
+  projects: Dictionary["sideProjects"];
+  copy: Dictionary["ui"]["home"];
+}) {
   return (
     <section className="section-block">
       <Container>
         <Reveal>
           <SectionHeading
-            index="(05) Engineering Evidence"
-            title="Claims should be one click away from proof."
+            index={copy.evidenceIndex}
+            title={copy.evidenceTitle}
           />
           <div className="mid:grid-cols-2 mt-4 grid gap-x-16">
-            {sideProjects.map((project) => (
-              <SideProjectItem key={project.slug} project={project} />
+            {projects.map((project) => (
+              <SideProjectItem key={project.slug} project={project} locale={locale} />
             ))}
           </div>
-          <Link href="/side-projects" className="nav-link mt-8 inline-flex">
-            View all side projects
+          <Link href={`/${locale}/side-projects`} className="nav-link mt-8 inline-flex">
+            {copy.allSideProjects}
           </Link>
         </Reveal>
       </Container>

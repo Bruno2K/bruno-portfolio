@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import { site } from "../content/site.ts";
+import type { Locale } from "../i18n/config.ts";
+import { localizePath } from "../i18n/routing.ts";
 
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -29,6 +31,10 @@ export function getCanonicalUrl(path: string) {
   return siteUrl ? new URL(path, siteUrl).toString() : undefined;
 }
 
+export function getLocalizedCanonicalUrl(locale: Locale, path: string) {
+  return getCanonicalUrl(localizePath(locale, path));
+}
+
 type PageMetadata = {
   title: string;
   description: string;
@@ -52,6 +58,54 @@ export function createPageMetadata({
       description,
       type: "website",
       siteName: site.name,
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description,
+    },
+  };
+}
+
+type LocalizedPageMetadata = PageMetadata & {
+  locale: Locale;
+  siteName: string;
+  defaultTitle: string;
+};
+
+export function createLocalizedPageMetadata({
+  title,
+  description,
+  path,
+  locale,
+  siteName,
+  defaultTitle,
+}: LocalizedPageMetadata): Metadata {
+  const canonicalUrl = getLocalizedCanonicalUrl(locale, path);
+  const englishUrl = getLocalizedCanonicalUrl("en", path);
+  const portugueseUrl = getLocalizedCanonicalUrl("pt-br", path);
+  const defaultUrl = getCanonicalUrl(path === "/" ? "/" : path);
+  const socialTitle = title === defaultTitle ? title : `${title} · ${siteName}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: englishUrl,
+        "pt-BR": portugueseUrl,
+        "x-default": defaultUrl,
+      },
+    },
+    openGraph: {
+      title: socialTitle,
+      description,
+      type: "website",
+      siteName,
+      locale: locale === "pt-br" ? "pt_BR" : "en_US",
+      alternateLocale: locale === "pt-br" ? ["en_US"] : ["pt_BR"],
       url: canonicalUrl,
     },
     twitter: {

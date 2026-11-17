@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { FaqItem as FaqItemType } from "@/content/faq";
 import { cx } from "@/lib/cx";
 
-export function FaqList({ items }: { items: FaqItemType[] }) {
+export function FaqList({ items }: { items: readonly FaqItemType[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (

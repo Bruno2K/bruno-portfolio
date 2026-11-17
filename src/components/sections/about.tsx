@@ -1,9 +1,9 @@
-import { about } from "@/content/about";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
+import type { Dictionary } from "@/i18n/types";
 
-export function About() {
+export function About({ about }: { about: Dictionary["about"] }) {
   return (
     <section id="about" className="section-block">
       <Container className="flex flex-col gap-16">

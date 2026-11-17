@@ -1,7 +1,7 @@
 import type { Testimonial } from "@/content/testimonials";
 import { cx } from "@/lib/cx";
 
-export function QuoteTicker({ items }: { items: Testimonial[] }) {
+export function QuoteTicker({ items }: { items: readonly Testimonial[] }) {
   const loop = [...items, ...items];
 
   return (
