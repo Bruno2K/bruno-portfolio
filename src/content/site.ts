@@ -13,6 +13,7 @@ export const site = {
   footerBlurb:
     "Senior Software Engineer building business systems from discovery through reliable delivery.",
   ogTitle: "Bruno Ferreira — Senior Software Engineer",
+  ogImageAlt: "Bruno Ferreira — Software Engineering Portfolio",
   social: {
     github: "https://github.com/Bruno2K",
     linkedin: "https://www.linkedin.com/in/bruno-patrick-a70a5115a/",
@@ -27,7 +28,6 @@ export const nav = [
   { label: "About", href: "/#about" },
   { label: "Focus", href: "/#experience" },
   { label: "Projects", href: "/#projects" },
-  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const footerNav = [

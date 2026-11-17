@@ -1,16 +1,30 @@
 import { ImageResponse } from "next/og";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { getSocialImageAlt } from "@/i18n/seo";
 
-export const alt = "Bruno Ferreira — Software Engineering Portfolio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+export function generateImageMetadata({ params }: { params: { locale: string } }) {
+  return [
+    {
+      id: "default",
+      alt: getSocialImageAlt(params.locale),
+      size,
+      contentType,
+    },
+  ];
+}
+
 export default async function OpenGraphImage({
   params,
+  id,
 }: {
   params: Promise<{ locale: string }>;
+  id: Promise<string>;
 }) {
+  await id;
   const { locale: localeParam } = await params;
   const locale = isLocale(localeParam) ? localeParam : "en";
   const dictionary = getDictionary(locale);

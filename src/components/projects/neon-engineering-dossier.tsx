@@ -9,7 +9,7 @@ export function NeonEngineeringDossier({ project, copy }: NeonEngineeringDossier
   const evidence = project.evidence ?? [];
 
   return (
-    <div className="flex flex-col gap-16">
+    <div id="technical-dossier" className="flex scroll-mt-24 flex-col gap-16">
       <section className="border-line flex flex-col gap-6 border-y py-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-col gap-3">
