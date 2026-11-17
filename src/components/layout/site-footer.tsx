@@ -22,8 +22,13 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <p className="text-eyebrow mb-5">Social</p>
+          <p className="text-eyebrow mb-5">Contact</p>
           <ul className="flex flex-col gap-3">
+            <li>
+              <a href={`mailto:${site.contactEmail}`} className="nav-link">
+                Email
+              </a>
+            </li>
             <li>
               <a href={site.social.github} className="nav-link" target="_blank" rel="noreferrer">
                 GitHub

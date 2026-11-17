@@ -16,10 +16,10 @@ export function Hero() {
           <p className="text-lead max-w-[52ch]">{site.lead}</p>
           <div className="flex flex-col items-stretch gap-3 pt-2 min-[480px]:flex-row min-[480px]:items-center">
             <Button href="/#projects" icon="down">
-              View Projects
+              View Engineering Work
             </Button>
-            <Button href={site.social.github} variant="secondary" icon="out" external>
-              View GitHub
+            <Button href="/contact" variant="secondary" icon="out">
+              Contact Bruno
             </Button>
           </div>
         </div>

@@ -56,7 +56,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <Button href="/contact" icon="out">
-            Let’s Talk
+            Contact
           </Button>
         </div>
         <button
@@ -109,7 +109,7 @@ export function SiteHeader() {
           </nav>
           <div onClick={() => setOpen(false)}>
             <Button href="/contact" icon="out" className="w-full">
-              Let’s Talk
+              Contact
             </Button>
           </div>
         </Container>
