@@ -29,9 +29,9 @@ export const professionalSystems: ProfessionalSystem[] = [
     problem:
       "A legacy customer-support platform needed channel integrations separated from central workflows so the product could evolve with clearer boundaries.",
     role:
-      "Led the initial technical reconstruction, defined channel and data boundaries, and later guided architectural evolution with engineering teams.",
+      "Led the reconstruction of a legacy customer-support platform and later guided its architectural evolution with engineering teams.",
     approach:
-      "Separated channel adapters from core message and service workflows, modeled customer and operational contexts, and integrated external systems.",
+      "Across those phases, the work established clearer channel boundaries, data models, and operational workflows while keeping external integrations separate from the core.",
     delivery:
       "The rebuilt foundation supported continued evolution across communication channels and operational workflows.",
     evidenceBoundary:
