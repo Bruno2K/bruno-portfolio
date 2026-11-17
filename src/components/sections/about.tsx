@@ -20,11 +20,11 @@ export function About() {
           </div>
         </Reveal>
         <Reveal>
-          <dl className="grid grid-cols-2 overflow-hidden border-y border-line mid:grid-cols-4">
+          <dl className="grid grid-cols-1 border-y border-line min-[560px]:grid-cols-2 mid:grid-cols-4">
             {about.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="border-line px-0 py-8 max-[809px]:py-6 mid:border-r mid:px-8 mid:last:border-r-0 max-[809px]:odd:pr-6 max-[809px]:even:border-l max-[809px]:even:pl-6"
+                className="border-line px-0 py-8 max-[559px]:border-b max-[559px]:last:border-b-0 max-[809px]:py-6 min-[560px]:max-[809px]:odd:pr-6 min-[560px]:max-[809px]:even:border-l min-[560px]:max-[809px]:even:pl-6 mid:border-r mid:px-8 mid:last:border-r-0"
               >
                 <dt className="text-stat">{stat.value}</dt>
                 <dd className="text-eyebrow mt-3">{stat.label}</dd>

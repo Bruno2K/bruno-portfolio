@@ -61,29 +61,29 @@ export function SiteHeader() {
         </div>
         <button
           type="button"
-          className="mid:hidden flex h-10 w-10 items-center justify-center"
+          className="mid:hidden flex h-11 w-11 shrink-0 items-center justify-center"
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpen((value) => !value)}
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-          <span aria-hidden="true" className="flex flex-col gap-1.5">
+          <span aria-hidden="true" className="relative block h-4 w-4">
             <span
               className={cx(
-                "bg-ink block h-px w-4 transition-transform",
-                open && "translate-y-[3.5px] rotate-45",
+                "bg-ink absolute top-1/2 left-0 block h-px w-4 transition-transform",
+                open ? "rotate-45" : "-translate-y-[5px]",
               )}
             />
             <span
               className={cx(
-                "bg-ink block h-px w-4 transition-opacity",
+                "bg-ink absolute top-1/2 left-0 block h-px w-4 transition-opacity",
                 open && "opacity-0",
               )}
             />
             <span
               className={cx(
-                "bg-ink block h-px w-4 transition-transform",
-                open && "-translate-y-[3.5px] -rotate-45",
+                "bg-ink absolute top-1/2 left-0 block h-px w-4 transition-transform",
+                open ? "-rotate-45" : "translate-y-[5px]",
               )}
             />
           </span>
