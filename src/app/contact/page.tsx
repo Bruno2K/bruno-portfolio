@@ -16,9 +16,14 @@ export default function ContactPage() {
           <p className="text-eyebrow">Contact</p>
           <h1 className="text-display">Let’s talk about hard engineering problems.</h1>
           <p className="text-lead">
-            Backend architecture, reliability, system design, AI-native engineering, or a role where those things matter — the best starting points are LinkedIn and GitHub.
+            Backend architecture, reliability, system design, AI-native engineering, or a
+            role where those things matter — the best starting points are email, LinkedIn,
+            and GitHub.
           </p>
           <div className="flex gap-5 text-[15px] font-medium">
+            <a href={`mailto:${site.contactEmail}`} className="nav-link">
+              Email
+            </a>
             <a href={site.social.linkedin} className="nav-link" target="_blank" rel="noreferrer">
               LinkedIn
             </a>
@@ -28,7 +33,7 @@ export default function ContactPage() {
           </div>
           <p className="text-eyebrow">{site.contactAvailability}</p>
         </div>
-        <ContactForm />
+        <ContactForm recipient={site.contactEmail} />
       </Container>
     </main>
   );
